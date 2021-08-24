@@ -2,20 +2,25 @@
     <div>
         <LayoutNavbar/>
         <h2>Venues</h2>
+        <div v-for="venue in venues.data" v-bind:key="venue.id">
+        <h2>{{ venue.venuename }}</h2>
+        <p>{{ venue.address }}</p>
+        </div>
         <LayoutFooter/>
     </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
     export default {
-        // mounted() {
-        //     this.getVenues()
-        // },
         computed: {
-            ...mapGetters(['getVenues'])
-        }
-
+            venues() {
+                return this.$store.getters.venues;
+            },
+        },
+        created() {
+            this.$store.dispatch('loadVenues');
+        },
     }
 </script>
 
