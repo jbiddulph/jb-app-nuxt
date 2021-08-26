@@ -15,27 +15,18 @@
 import { mapGetters, mapActions } from "vuex";
     export default {
         methods: {
-            // ...mapActions('venues', [
-            //    'venues/loadVenues'
+            // ...mapActions([
+            //     'venues/loadVenues', 
             // ])
-            // ...mapActions("venues",["loadVenues"]),
-            ...mapActions([
-                'venues/loadVenues', 
-            ])
         },
         computed: {
-            
             ...mapGetters('venues', {
                 venues: 'getVenues'
             }),
-            
-            // venues() {
-            //     return this.$store.getters.venues;
-            // },
         },
-        // created() {
-        //     this.$store.dispatch('venues/loadVenues');
-        // },
+        created() {
+            this.$store.dispatch('venues/loadVenues');
+        },
     }
 </script>
 

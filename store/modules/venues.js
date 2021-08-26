@@ -4,22 +4,19 @@ const state = () => ({
 
 const getters = {
     getVenues: state => {
-        console.log('xxs',state.venues)
         return state.venues;
     }
 }
 
 const actions = {
-    async loadVenues () {
+    async loadVenues ({commit}) {
         try {
               await this.$axios.get('venues', {
                 headers: {
                     Authorization: `${window.localStorage.getItem('auth._token.local')}`
-                    // Authorization: `${this.state.localStorage.token}`
                 }
             }).then((res) => {
                 // JSON responses are automatically parsed.
-                console.log('venues: ', res)
                 commit('SET_VENUES', res.data)
             })
         }
