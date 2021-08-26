@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <div class="container">
-      <h2 class="title">My Profile</h2>
+      <h2 class="title">My Profileio</h2>
       <div class="content">
         <p>
           <strong>Username:</strong>
@@ -10,7 +10,7 @@
         </p>
         <p>
           <strong>Email:</strong>
-          {{ this.username }}
+          {{ this.useremail }}
         </p>
       </div>
     </div>
@@ -24,6 +24,7 @@ import { mapGetters } from 'vuex'
         data() {
           return {
             username: null,
+            useremail: null,
             token: localStorage.getItem('auth._token.local')
           }
         },
@@ -38,11 +39,14 @@ import { mapGetters } from 'vuex'
               }
             }).then((res) => {
               this.username = res.data.name
+              this.useremail = res.data.email
             })
           }
         },
         computed: {
-            ...mapGetters(['loggedInUser'])
+            ...mapGetters({
+            loggedInUser : 'auth/loggedInUser'
+          })
         }
     }
 </script>

@@ -1,11 +1,11 @@
 <template>
 <div>
-  <LayoutNavbar 
-      v-if="loggedIn" 
+  <!-- <LayoutNavbar 
+      v-if="isAuthenticated" 
       :username="username" 
-      :loggedIn="loggedIn" 
-  />
-  <LayoutNavbar v-else/>
+      :loggedIn="isAuthenticated" 
+  /> -->
+  <LayoutNavbar/>
   <Home/>
   <LayoutFooter/>
 </div>

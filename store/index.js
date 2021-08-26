@@ -1,42 +1,20 @@
-export const state = () => ({
-  venues: []
-})
+import Vue from 'vue'
+import Vuex from 'vuex'
+import auth from './modules/auth'
+import venues from './modules/venues'
+// import createLogger from '../../../src/plugins/logger'
 
-export const mutations = {
-  SET_VENUES (state, venues) {
-      state.venues = venues
-  }
-}
+Vue.use(Vuex)
 
-export const actions = {
-  async loadVenues ({ commit }) {
-      try {
-            await this.$axios.get('venues', {
-              headers: {
-                  Authorization: `${localStorage.getItem('auth._token.local')}`
-              }
-          }).then((res) => {
-              // JSON responses are automatically parsed.
-              commit('SET_VENUES', res.data)
-          })
-      }
-       catch (error) {
-          console.log(error);
-      }
-  }
-}
+// const debug = process.env.NODE_ENV !== 'production'
 
-export const getters = {
-  isAuthenticated(state) {
-    return state.auth.loggedIn
-  },
+const createStore = () => (
+  new Vuex.Store({
+    modules: {
+      auth,
+      venues
+    }
+  })
+)
 
-  loggedInUser(state) {
-    return state.auth.user
-  },
-
-  venues: state => {
-    return state.venues;
-  }
-}
-
+export default createStore;

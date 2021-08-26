@@ -23,6 +23,7 @@
             <a class="navbar-link">
               Admin
             </a>
+            Auth: {{isAuthenticated}}
             <div v-if="!isAuthenticated" class="navbar-dropdown">
               <nuxt-link class="navbar-item" to="/auth/register">Register</nuxt-link>
               <nuxt-link class="navbar-item" to="/auth/login">Log In</nuxt-link>
@@ -86,7 +87,10 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['isAuthenticated', 'loggedInUser'])
+    ...mapGetters({
+      isAuthenticated : 'auth/isAuthenticated',
+      loggedInUser : 'auth/loggedInUser'
+    })
   }
 }
 </script>

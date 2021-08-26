@@ -1,8 +1,8 @@
 <template>
     <div>
         <h1>Welcome to JB-App</h1>
-        <div v-show="loggedIn">
-            {{ $store.state.localStorage.token }}
+        <div>
+            <!-- {{ $store.state.localStorage.token }} -->
             {{ username }}
         </div>
     </div>
@@ -31,13 +31,13 @@
             }
         },
         computed: {
-            loggedIn() {
-                if(this.$store.state.localStorage.token) {
-                    return true
-                } else {
-                    return false
-                }
-            }
+            // loggedIn() {
+            //     if(this.$store.state.localStorage.token) {
+            //         return true
+            //     } else {
+            //         return false
+            //     }
+            // }
         }
     }
 </script>
