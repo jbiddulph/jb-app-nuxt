@@ -9,6 +9,22 @@ const getters = {
 }
 
 const actions = {
+    async addVenue ({commit}, data) {
+        try {
+            await this.$axios.post('venues', {
+                headers: {
+                    Authorization: `${window.localStorage.getItem('auth._token.local')}`
+                },
+                data,
+            }).then((res) => {
+                // JSON responses are automatically parsed.
+                console.log('Data: ', data)
+                commit('ADD_VENUE', res.data)
+            })
+        } catch (error) {
+            console.error('Error:', error)
+        }
+    },
     async loadVenues ({commit}) {
         try {
               await this.$axios.get('venues', {
@@ -30,6 +46,9 @@ const actions = {
 const mutations = {
     SET_VENUES (state, venues) {
         state.venues = venues
+    },
+    ADD_VENUE (state, venue) {
+        state.venue.unshift(venue)
     }
 }
 

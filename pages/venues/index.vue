@@ -2,6 +2,7 @@
     <div>
         <LayoutNavbar/>
         <h2>Venues</h2>
+        <VenuesAdd />
         {{venues}}
         <!-- <div v-for="venue in venues" v-bind:key="venue.id">
         <h2>{{ venue.venuename }}</h2>
