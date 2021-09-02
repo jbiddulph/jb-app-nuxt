@@ -11,16 +11,14 @@ const getters = {
 const actions = {
     async addVenue ({commit}, data) {
         try {
-            await this.$axios.post('venues', {
+            const response = this.$axios.post('venues', data, {
                 headers: {
                     Authorization: `${window.localStorage.getItem('auth._token.local')}`
                 },
-                data,
-            }).then((res) => {
-                // JSON responses are automatically parsed.
-                console.log('Data: ', data)
-                commit('ADD_VENUE', res.data)
-            })
+            })  // JSON responses are automatically parsed.
+                console.log('Datab: ', data)
+                commit('ADD_VENUE', response)
+            
         } catch (error) {
             console.error('Error:', error)
         }
@@ -33,7 +31,7 @@ const actions = {
                 }
             }).then((res) => {
                 // JSON responses are automatically parsed.
-                commit('SET_VENUES', res.data)
+                commit('SET_VENUES', res.data.data)
             })
         }
          catch (error) {
@@ -48,7 +46,7 @@ const mutations = {
         state.venues = venues
     },
     ADD_VENUE (state, venue) {
-        state.venue.unshift(venue)
+        state.venues.push(venue)
     }
 }
 
