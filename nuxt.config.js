@@ -26,8 +26,9 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [{
-    src: '~/plugins/vuex-persist',
-    mode: 'client'
+    src: '~/Plugins/vuex-persist',
+    src: '~/Plugins/vuelidate',
+    mode: 'both'
   }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -37,6 +38,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/vuetify',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

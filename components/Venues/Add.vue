@@ -6,7 +6,13 @@
                 <div class="field">
                     <label class="label">Venue Name</label>
                     <div class="control">
-                        <input type="text" v-model="venuename" placeholder="Add Venue">
+                        <input type="text" v-model.trim="$v.venuename.$model" placeholder="Add Venue" :class="{
+                            'is-invalid':$v.venuename.$error, 'is-valid':!$v.venuename.$invalid}">
+                        <!-- <div class="valid-feedback">your vanue name is valid</div> -->
+                        <div class="invalid-feedback">
+                            <span v-if="!$v.venuename.required">Venue name is required</span>
+                            <span v-if="!$v.venuename.minLength">Venue name must have at least {{ $v.venuename.$params.minLength.min }} characters</span>
+                        </div>
                     </div>
                 </div>
                 <div class="field">
@@ -135,35 +141,42 @@
     </div>
 </template>
 <script>
+import { required, minLength, maxLength, between} from 'vuelidate/lib/validators'
 import { mapActions } from 'vuex'
     export default {
         data() {
-            return {
-                venue: {
-                    venuename: null,
-                    fsa_id: null,
-                    user_id: null,
-                    email: null,
-                    venuename: null,
-                    slug: null,
-                    venuetype: null,
-                    address: null,
-                    address2: null,
-                    town: null,
-                    county: null,
-                    postcode: null,
-                    postalsearch: null,
-                    telephone: null,
-                    easting: null,
-                    northing: null,
-                    latitude: null,
-                    longitude: null,
-                    local_authority: null,
-                    website: null,
-                    photo: null,
-                    is_live: null,
-                }
+            return { 
+                fsa_id: '',
+                user_id: '',
+                email: '',
+                venuename: '',
+                slug: '',
+                venuetype: '',
+                address: '',
+                address2: '',
+                town: '',
+                county: '',
+                postcode: '',
+                postalsearch: '',
+                telephone: null,
+                easting: null,
+                northing: null,
+                latitude: null,
+                longitude: null,
+                local_authority: null,
+                website: '',
+                photo: '',
+                is_live: 0,
             }
+        },
+        validations: {
+            venuename: {
+                required,
+                minLength: minLength(3),
+            },
+            town: {
+                required,
+            },
         },
         methods: {
             ...mapActions({
@@ -197,5 +210,8 @@ import { mapActions } from 'vuex'
         cursor: pointer;
         background-color: #990066;
         color: #fff;
+    }
+    input[type="text"] {
+        width: 100%;
     }
 </style>
