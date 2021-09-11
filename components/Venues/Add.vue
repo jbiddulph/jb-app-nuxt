@@ -2,137 +2,136 @@
     <div>
         <h2>Add Venue</h2>
         <div class="add">
-            <form @submit="onSubmit">
+            <form @submit="postData" method="post">
                 <div class="field">
                     <label class="label">Venue Name</label>
                     <div class="control">
-                        <input type="text" v-model.trim="$v.venuename.$model" placeholder="Add Venue" :class="{
-                            'is-invalid':$v.venuename.$error, 'is-valid':!$v.venuename.$invalid}">
-                        <!-- <div class="valid-feedback">your vanue name is valid</div> -->
-                        <div class="invalid-feedback">
-                            <span v-if="!$v.venuename.required">Venue name is required</span>
-                            <span v-if="!$v.venuename.minLength">Venue name must have at least {{ $v.venuename.$params.minLength.min }} characters</span>
+                        <input type="text" v-model="venue.venuename" placeholder="Add Venue" :class="{
+                            'is-invalid':$v.venue.venuename.$error, 'is-valid':!$v.venue.venuename.$invalid}">
+                        <div v-if="venue.venuename" class="invalid-feedback">
+                            <span v-if="!$v.venue.venuename.required">Venue name is required</span>
+                            <span v-if="!$v.venue.venuename.minLength">Venue name must have at least {{ $v.venue.venuename.$params.minLength.min }} characters</span>
                         </div>
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">FSA ID</label>
                     <div class="control">
-                        <input type="text" v-model="fsa_id" placeholder="FSA ID">
+                        <input type="number" v-model="venue.fsa_id" placeholder="FSA ID">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">User ID</label>
                     <div class="control">
-                        <input type="text" v-model="user_id" placeholder="User ID">
+                        <input type="number" v-model="venue.user_id" placeholder="User ID">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Email</label>
                     <div class="control">
-                        <input type="text" v-model="email" placeholder="email">
+                        <input type="text" v-model="venue.email" placeholder="email">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Slug</label>
                     <div class="control">
-                        <input type="text" v-model="slug" placeholder="Slug">
+                        <input type="text" v-model="venue.slug" placeholder="Slug">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Venue Type</label>
                     <div class="control">
-                        <input type="text" v-model="venuetype" placeholder="Venue type">
+                        <input type="text" v-model="venue.venuetype" placeholder="Venue type">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Address</label>
                     <div class="control">
-                        <input type="text" v-model="address" placeholder="Address">
+                        <input type="text" v-model="venue.address" placeholder="Address">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Address 2</label>
                     <div class="control">
-                        <input type="text" v-model="address2" placeholder="Address2">
+                        <input type="text" v-model="venue.address2" placeholder="Address2">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Town</label>
                     <div class="control">
-                        <input type="text" v-model="town" placeholder="Town">
+                        <input type="text" v-model="venue.town" placeholder="Town">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">County</label>
                     <div class="control">
-                        <input type="text" v-model="county" placeholder="County">
+                        <input type="text" v-model="venue.county" placeholder="County">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Post Code</label>
                     <div class="control">
-                        <input type="text" v-model="postcode" placeholder="Post Code">
+                        <input type="text" v-model="venue.postcode" placeholder="Post Code">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Postal Search</label>
                     <div class="control">
-                        <input type="text" v-model="postalsearch" placeholder="Postal Search">
+                        <input type="text" v-model="venue.postalsearch" placeholder="Postal Search">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Telephone</label>
                     <div class="control">
-                        <input type="text" v-model="telephone" placeholder="Telephone">
+                        <input type="text" v-model="venue.telephone" placeholder="Telephone">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Easting</label>
                     <div class="control">
-                        <input type="text" v-model="easting" placeholder="Easting">
+                        <input type="text" v-model="venue.easting" placeholder="Easting">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Northing</label>
                     <div class="control">
-                        <input type="text" v-model="northing" placeholder="Northing">
+                        <input type="text" v-model="venue.northing" placeholder="Northing">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Latitude</label>
                     <div class="control">
-                        <input type="text" v-model="latitude" placeholder="Latitude">
+                        <input type="text" v-model="venue.latitude" placeholder="Latitude">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Longitude</label>
                     <div class="control">
-                        <input type="text" v-model="longitude" placeholder="Longitude">
+                        <input type="text" v-model="venue.longitude" placeholder="Longitude">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Local Authority</label>
                     <div class="control">
-                        <input type="text" v-model="local_authority" placeholder="Local Authority">
+                        <input type="text" v-model="venue.local_authority" placeholder="Local Authority">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Website</label>
                     <div class="control">
-                        <input type="text" v-model="website" placeholder="Website">
+                        <input type="text" v-model="venue.website" placeholder="Website">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Photo</label>
                     <div class="control">
-                        <input type="text" v-model="photo" placeholder="Photo">
+                        <input type="text" v-model="venue.photo" placeholder="Photo">
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Live</label>
                     <div class="control">
-                        <input type="text" v-model="is_live" placeholder="Live">
+                        <input type="text" v-model="venue.is_live" placeholder="Live">
                     </div>
                 </div>
                 <input type="submit" value="Submit">
@@ -146,45 +145,56 @@ import { mapActions } from 'vuex'
     export default {
         data() {
             return { 
-                fsa_id: '',
-                user_id: '',
-                email: '',
-                venuename: '',
-                slug: '',
-                venuetype: '',
-                address: '',
-                address2: '',
-                town: '',
-                county: '',
-                postcode: '',
-                postalsearch: '',
-                telephone: null,
-                easting: null,
-                northing: null,
-                latitude: null,
-                longitude: null,
-                local_authority: null,
-                website: '',
-                photo: '',
-                is_live: 0,
+                venue: {
+                    fsa_id: '',
+                    user_id: '',
+                    email: '',
+                    venuename: '',
+                    slug: '',
+                    venuetype: '',
+                    address: '',
+                    address2: '',
+                    town: '',
+                    county: '',
+                    postcode: '',
+                    postalsearch: '',
+                    telephone: null,
+                    easting: null,
+                    northing: null,
+                    latitude: null,
+                    longitude: null,
+                    local_authority: null,
+                    website: '',
+                    photo: '',
+                    is_live: 0,
+                }
             }
         },
         validations: {
-            venuename: {
-                required,
-                minLength: minLength(3),
-            },
-            town: {
-                required,
-            },
+            venue: {
+                venuename: {
+                    required,
+                    minLength: minLength(3),
+                },
+                town: {
+                    required,
+                },
+            }
         },
         methods: {
             ...mapActions({
                 addVenue: 'venues/addVenue'
             }),
-            onSubmit(e) {
+            postData(e) {
+                
                 e.preventDefault()
-                this.addVenue(this.venue)
+                // this.$v.$validate()
+                // if(!this.$v.$error){
+                    console.log('e: ', e.fsa_id)
+                    this.addVenue(this.venue)
+                // } else {
+                //     alert('form failed validation')
+                // }
             }
         },
         // created() {
@@ -199,7 +209,7 @@ import { mapActions } from 'vuex'
         width: 100%;
         flex-direction: column;
     }
-    input[type="text"] {
+    input[type="text"], input[type="number"] {
         border: 1px solid #990066;
         padding:10px;
         flex: 10;
@@ -211,7 +221,10 @@ import { mapActions } from 'vuex'
         background-color: #990066;
         color: #fff;
     }
-    input[type="text"] {
+    input[type="text"], input[type="number"] {
         width: 100%;
+    }
+    .is-valid {
+        border: 1px solid #20aa27!important;
     }
 </style>

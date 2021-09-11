@@ -1,5 +1,10 @@
 const state = () => ({
-    venues: []
+    venues: [],
+    pagination: {
+        page: 1,
+        limit: 10,
+        totalPages: 0
+    }
 })
 
 const getters = {
