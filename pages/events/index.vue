@@ -63,12 +63,12 @@ import { mapGetters, mapActions } from "vuex";
             // ])
         },
         computed: {
-            ...mapGetters('venues', {
-                venues: 'getVenues'
+            ...mapGetters('events', {
+                events: 'getEvents'
             }),
         },
         created() {
-            this.$store.dispatch('venues/loadVenues');
+            this.$store.dispatch('events/loadEvents');
         },
     }
 </script>

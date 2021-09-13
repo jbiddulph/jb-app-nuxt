@@ -13,8 +13,8 @@ const createStore = () => (
   new Vuex.Store({
     modules: {
       auth,
+      events,
       venues,
-      events
     }
   })
 )
