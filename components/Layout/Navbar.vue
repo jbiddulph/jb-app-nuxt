@@ -19,25 +19,40 @@
           <a class="navbar-item" href="/">
             Home
           </a>
-          <div class="navbar-item has-dropdown is-hoverable">
+          <div v-if="isAuthenticated" class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
-              Admin
+              Events
             </a>
-            Auth: {{isAuthenticated}}
-            <div v-if="!isAuthenticated" class="navbar-dropdown">
-              <nuxt-link class="navbar-item" to="/auth/register">Register</nuxt-link>
-              <nuxt-link class="navbar-item" to="/auth/login">Log In</nuxt-link>
+            <div class="navbar-dropdown">
+              <nuxt-link class="navbar-item" to="/events/add">Add Event</nuxt-link>
+              <nuxt-link class="navbar-item" to="/events">Events</nuxt-link>
             </div>
-            <div v-else class="navbar-dropdown">
-              
+          </div>
+          <div v-if="isAuthenticated" class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Venues
+            </a>
+            <div class="navbar-dropdown">
+              <nuxt-link class="navbar-item" to="/venues/add">Add Venue</nuxt-link>
               <nuxt-link class="navbar-item" to="/venues">Venues</nuxt-link>
-              <nuxt-link class="navbar-item" to="/auth/user">{{ loggedInUser.name }}</nuxt-link>
-              <a class="navbar-item has-text-danger" @click="logout">Logout</a>
             </div>
           </div>
         </div>
 
         <div class="navbar-end">
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Admin
+            </a>
+            <div v-if="!isAuthenticated" class="navbar-dropdown">
+              <nuxt-link class="navbar-item" to="/auth/register">Register</nuxt-link>
+              <nuxt-link class="navbar-item" to="/auth/login">Log In</nuxt-link>
+            </div>
+            <div v-else class="navbar-dropdown">
+              <nuxt-link class="navbar-item" to="/auth/user">{{ loggedInUser.name }}</nuxt-link>
+              <a class="navbar-item has-text-danger" @click="logout">Logout</a>
+            </div>
+          </div>
           <div class="navbar-item">
             <div class="field is-grouped">
               <p class="control">

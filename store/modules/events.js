@@ -1,5 +1,5 @@
 const state = () => ({
-    venues: [],
+    events: [],
     pagination: {
         page: 1,
         limit: 10,
@@ -8,37 +8,37 @@ const state = () => ({
 })
 
 const getters = {
-    getVenues: state => {
-        return state.venues;
+    getEvents: state => {
+        return state.events;
     }
 }
 
 const actions = {
-    async addVenue ({commit}, data) {
+    async addEvent ({commit}, data) {
         try {
-            const response = this.$axios.post('venues', data, {
+            const response = this.$axios.post('events', data, {
                 headers: {
                     Authorization: `${window.localStorage.getItem('auth._token.local')}`
                 },
             })  // JSON responses are automatically parsed.
                 console.log('Datab: ', data)
-                commit('ADD_VENUE', response)
+                commit('ADD_EVENT', response)
             
         } catch (error) {
             console.error('Error:', error)
         }
     },
-    async loadVenues ({commit}) {
+    async loadEvents ({commit}) {
         try {
-            await this.$axios.get(`venues`, {  
-            // await this.$axios.get(`venues?current_page=${pagination.page}&per_page=${pagination.limit}`, {
+            await this.$axios.get(`events`, {  
+            // await this.$axios.get(`events?current_page=${pagination.page}&per_page=${pagination.limit}`, {
                 headers: {
                     Authorization: `${window.localStorage.getItem('auth._token.local')}`
                 }
             }).then((res) => {
                 // JSON responses are automatically parsed.
                 console.log('res: ', res.data)
-                commit('SET_VENUES', res.data.data)
+                commit('SET_EVENTS', res.data.data)
             })
         }
          catch (error) {
@@ -49,11 +49,11 @@ const actions = {
 
 
 const mutations = {
-    SET_VENUES (state, venues) {
-        state.venues = venues
+    SET_EVENTS (state, events) {
+        state.events = events
     },
-    ADD_VENUE (state, venue) {
-        state.venues.push(venue)
+    ADD_EVENT (state, event) {
+        state.event.push(event)
     }
 }
 

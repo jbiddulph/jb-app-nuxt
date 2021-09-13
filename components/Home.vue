@@ -1,9 +1,11 @@
 <template>
     <div>
-        <h1>Welcome to JB-App</h1>
-        <div>
-            <!-- {{ $store.state.localStorage.token }} -->
-            {{ username }}
+        <div class="container">
+            <h1>Welcome to JB-App</h1>
+            <div>
+                <!-- {{ $store.state.localStorage.token }} -->
+                {{ username }}
+            </div>
         </div>
     </div>
 </template>
