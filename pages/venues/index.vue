@@ -77,6 +77,8 @@ import { mapGetters, mapActions } from "vuex";
 .container {
     max-width: 1140px;
     margin: 0 auto;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
 }
 h1 {
     font-size: 2.3rem;
