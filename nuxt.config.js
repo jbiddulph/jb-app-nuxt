@@ -46,10 +46,18 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth',
+    '@nuxtjs/style-resources',
     ['nuxt-vuex-localstorage', {
       mode: 'manual'
     }]
   ],
+
+  // Style Resources
+  styleResources: {
+    scss: [
+        'assets/scss/variables.scss',
+    ]
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

@@ -1,0 +1,21 @@
+$primary: rgb(0, 153, 102);
+$primary-80: rgba(0, 153, 102, 0.8);
+$primary-60: rgba(0, 153, 102, 0.6);
+$primary-40: rgba(0, 153, 102, 0.4);
+$primary-20: rgba(0, 153, 102, 0.2);
+
+$secondary: rgb(140, 0, 153);
+$secondary-80: rgba(140, 0, 153, 0.8);
+$secondary-60: rgba(140, 0, 153, 0.6);
+$secondary-40: rgba(140, 0, 153, 0.4);
+$secondary-20: rgba(140, 0, 153, 0.2);
+
+.container {
+    background-color: #ff6600;
+}
+
+.venue-list {
+    .venue {
+        background-color: #ff0099;
+    }
+}

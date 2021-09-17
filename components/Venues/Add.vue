@@ -59,7 +59,11 @@
                 <div class="field">
                     <label class="label">Town</label>
                     <div class="control">
-                        <input type="text" v-model="venue.town" placeholder="Town">
+                        <input type="text" v-model="venue.town" placeholder="Town" :class="{
+                            'is-invalid':$v.venue.town.$error, 'is-valid':!$v.venue.town.$invalid}">
+                        <div v-if="venue.town" class="invalid-feedback">
+                            <span v-if="!$v.venue.town.required">Town is required</span>
+                        </div>
                     </div>
                 </div>
                 <div class="field">

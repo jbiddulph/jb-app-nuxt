@@ -3,7 +3,7 @@
         <LayoutNavbar/>
         <div class="container">
             <div class="title-button">
-                <h1>Venues</h1>
+                <h1 class="is-size-2">Venues</h1>
                 <button class="button is-primary is-large modal-button" data-target="modal" aria-haspopup="true" @click="showModal">+ Add Venue</button>
             </div>
             <div class="venue-list">
@@ -83,6 +83,7 @@ import { mapGetters, mapActions } from "vuex";
 h1 {
     font-size: 2.3rem;
     font-weight: bold;
+    color: $primary;
 }
 h2 {
     font-size: 1.6rem;
