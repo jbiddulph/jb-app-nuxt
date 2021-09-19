@@ -9,8 +9,10 @@
             <div class="venue-list">
                 <div v-for="venue in venues" v-bind:key="venue.id" class="venue">
                     <span>&nbsp;</span>
-                <h2>{{ venue.venuename }}</h2>
-                <p>{{ venue.address }}</p>
+                <nuxt-link class="navbar-item" :to="`venues/edit/${venue.id}`">
+                    <h2>{{ venue.venuename }}</h2>
+                    <p>{{ venue.address }}</p>
+                </nuxt-link>
             </div>
             <div class="modal" :class="{'is-active': showModalFlag}">
                 <div class="modal-background"></div>
@@ -21,7 +23,7 @@
                     </header>
                     <section class="modal-card-body">
                     <p>{{ message }}</p>
-                    <p><VenuesAdd /></p>
+                    <p><VenuesForm /></p>
                     </section>
                     <footer class="modal-card-foot">
                     <button class="button is-success" @click="okModal">Ok</button>

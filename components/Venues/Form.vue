@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Add Venue</h2>
+        <h2>{{ this.title }}</h2>
         <div class="add">
             <form @submit="postData" method="post">
                 <div class="field">
@@ -147,6 +147,92 @@
 import { required, minLength, maxLength, between} from 'vuelidate/lib/validators'
 import { mapActions } from 'vuex'
     export default {
+        props: {
+            venuename: {
+                type: String,
+                required: false,
+            },
+            fsa_id: {
+                type: Number,
+                required: false,
+            },
+            user_id: {
+                type: Number,
+                required: false,
+            },
+            email: {
+                type: String,
+                required: false,
+            },
+            slug: {
+                type: String,
+                required: false,
+            },
+            venuetype: {
+                type: String,
+                required: false,
+            },
+            address: {
+                type: String,
+                required: false,
+            },
+            address2: {
+                type: String,
+                required: false,
+            },
+            town: {
+                type: String,
+                required: false,
+            },
+            county: {
+                type: String,
+                required: false,
+            },
+            postcode: {
+                type: String,
+                required: false,
+            },
+            postalsearch: {
+                type: String,
+                required: false,
+            },
+            telephone: {
+                type: String,
+                required: false,
+            },
+            easting: {
+                type: String,
+                required: false,
+            },
+            northing: {
+                type: String,
+                required: false,
+            },
+            latitude: {
+                type: String,
+                required: false,
+            },
+            longitude: {
+                type: String,
+                required: false,
+            },
+            local_authority: {
+                type: String,
+                required: false,
+            },
+            website: {
+                type: String,
+                required: false,
+            },
+            photo: {
+                type: String,
+                required: false,
+            },
+            is_live: {
+                type: Boolean,
+                required: false,
+            }
+        },
         data() {
             return { 
                 venue: {
@@ -171,7 +257,8 @@ import { mapActions } from 'vuex'
                     website: '',
                     photo: '',
                     is_live: 0,
-                }
+                },
+                title: ''
             }
         },
         validations: {
@@ -183,6 +270,30 @@ import { mapActions } from 'vuex'
                 town: {
                     required,
                 },
+            }
+        },
+        mounted() {
+            if (this.$route.params.venue) {
+                this.title = 'Edit Venue'
+                this.venue.venuename = this.venuename
+                this.venue.address = this.address
+                this.venue.address2 = this.address2
+                this.venue.town = this.town
+                this.venue.slug = this.slug
+                this.venue.county = this.county
+                this.venue.postcode = this.postcode
+                this.venue.postalsearch = this.postalsearch
+                this.venue.telephone = this.telephone
+                this.venue.easting = this.easting
+                this.venue.northing = this.northing
+                this.venue.latitude = this.latitude
+                this.venue.longitude = this.longitude
+                this.venue.local_authority = this.local_authority
+                this.venue.website = this.website
+                this.venue.photo = this.photo
+                this.venue.is_live = this.is_live
+            } else {
+                this.title = 'Add Venue'
             }
         },
         methods: {

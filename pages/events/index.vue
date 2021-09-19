@@ -7,29 +7,31 @@
                 <button class="button is-primary is-large modal-button" data-target="modal" aria-haspopup="true" @click="showModal">+ Add Event</button>
             </div>
             <div class="event-list">
-                <div v-for="event in events" v-bind:key="event.id" class="event">
+                <div v-for="event in events" v-bind:key="event.id" class="event" @click="showEvent(event.id)">
                     <span>&nbsp;</span>
-                <h2>{{ event.eventName }}</h2>
-                <p>{{ event.eventDetails }}</p>
-            </div>
-            <div class="modal" :class="{'is-active': showModalFlag}">
-                <div class="modal-background"></div>
-                <div class="modal-card">
-                    <header class="modal-card-head">
-                    <p class="modal-card-title">Add a new Event</p>
-                    <button class="delete" aria-label="close" @click="cancelModal">></button>
-                    </header>
-                    <section class="modal-card-body">
-                    <p>{{ message }}</p>
-                    <p><EventsAdd /></p>
-                    </section>
-                    <footer class="modal-card-foot">
-                    <button class="button is-success" @click="okModal">Ok</button>
-                    <button class="button" @click="cancelModal">Cancel</button>
-                    </footer>
+                    <nuxt-link class="navbar-item" :to="`events/edit/${event.id}`">
+                        <h2>{{ event.eventName }}</h2>
+                        <p>{{ event.eventDetails }}</p>
+                    </nuxt-link>
+                </div>
+                <div class="modal" :class="{'is-active': showModalFlag}">
+                    <div class="modal-background"></div>
+                    <div class="modal-card">
+                        <header class="modal-card-head">
+                        <p class="modal-card-title">Add a new Event</p>
+                        <button class="delete" aria-label="close" @click="cancelModal">></button>
+                        </header>
+                        <section class="modal-card-body">
+                        <p>{{ message }}</p>
+                        <p><EventsForm /></p>
+                        </section>
+                        <footer class="modal-card-foot">
+                        <button class="button is-success" @click="okModal">Ok</button>
+                        <button class="button" @click="cancelModal">Cancel</button>
+                        </footer>
+                    </div>
                 </div>
             </div>
-        </div>
         </div>    
         <LayoutFooter/>
     </div>
@@ -46,6 +48,9 @@ import { mapGetters, mapActions } from "vuex";
             }
         },
         methods: {
+            showEvent(id) {
+                console.log('Here is the event', id)
+            },
             showModal() {
                 this.okPressed = false;
                 this.showModalFlag = true;
@@ -95,7 +100,7 @@ h2 {
     justify-content: space-between;
     align-items: center;
 }
-.venue-list {
+.event-list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -106,7 +111,8 @@ h2 {
     }
 }
 
-.venue {
+.event {
+    cursor: pointer;
     position: relative;
     width:200px;
     display: flex;

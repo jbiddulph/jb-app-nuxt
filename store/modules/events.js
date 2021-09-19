@@ -44,6 +44,23 @@ const actions = {
          catch (error) {
             console.log('Error:' ,error);
         }
+    },
+    async loadEvent ({commit}, id) {
+        try {
+            await this.$axios.get(`events/${id}`, {  
+            // await this.$axios.get(`events?current_page=${pagination.page}&per_page=${pagination.limit}`, {
+                headers: {
+                    Authorization: `${window.localStorage.getItem('auth._token.local')}`
+                }
+            }).then((res) => {
+                // JSON responses are automatically parsed.
+                console.log('res: ', res.data)
+                commit('SET_EVENTS', res.data.data)
+            })
+        }
+         catch (error) {
+            console.log('Error:' ,error);
+        }
     }
 }
 

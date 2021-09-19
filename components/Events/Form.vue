@@ -32,7 +32,6 @@
                             'is-invalid':$v.event.eventType.$error, 'is-valid':!$v.event.eventType.$invalid}">
                         <div v-if="event.eventType" class="invalid-feedback">
                             <span v-if="!$v.event.eventType.required">Event type is required</span>
-                            <span v-if="!$v.event.eventType.minLength">Event type must have at least {{ $v.event.eventType.$params.minLength.min }} characters</span>
                         </div>
                     </div>
                 </div>
@@ -51,6 +50,28 @@
 import { required, minLength, maxLength, between} from 'vuelidate/lib/validators'
 import { mapActions } from 'vuex'
     export default {
+        props: {
+            eventName: {
+                type: String,
+                required: false,
+            },
+            eventDetails: {
+                type: String,
+                required: false,
+            },
+            eventDate: {
+                type: String,
+                required: false,
+            },
+            eventType: {
+                type: String,
+                required: false,
+            },
+            is_live: {
+                type: Boolean,
+                required: false,
+            }
+        },
         data() {
             return { 
                 event: {
@@ -73,12 +94,30 @@ import { mapActions } from 'vuex'
                     required,
                     minLength: minLength(3),
                 },
+                eventDate: {
+                    required,
+                },
                 eventType: {
                     required,
                 },
                 eventDetails: {
                     required,
+                    minLength: minLength(3),
                 },
+            }
+        },
+        mounted() {
+            if (this.$route.params.event) {
+                this.event.eventName = this.eventName
+                this.event.eventDetails = this.eventDetails
+                this.event.eventDate = this.eventDate
+                this.event.eventType = this.eventType
+                this.event.slug = this.slug
+                this.event.eventPhoto = this.eventPhoto
+                this.event.eventTimeStart = this.eventTimeStart
+                this.event.eventTimeEnd = this.eventTimeEnd
+                this.event.eventCost = this.eventCost
+                this.event.is_live = this.is_live
             }
         },
         methods: {

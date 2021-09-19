@@ -2,7 +2,7 @@
     <div>
         <LayoutNavbar/>
         <div class="container">
-            <VenuesAdd />
+            <VenuesForm />
         </div>
         <LayoutFooter/>
     </div>
