@@ -135,7 +135,7 @@
                 <div class="field">
                     <label class="label">Live</label>
                     <div class="control">
-                        <input type="text" v-model="venue.is_live" placeholder="Live">
+                        <input type="checkbox" v-model="venue.is_live" placeholder="Live">
                     </div>
                 </div>
                 <input type="submit" value="Submit">
@@ -276,6 +276,7 @@ import { mapActions } from 'vuex'
             if (this.$route.params.venue) {
                 this.title = 'Edit Venue'
                 this.venue.venuename = this.venuename
+                this.venue.venuetype = this.venuetype
                 this.venue.address = this.address
                 this.venue.address2 = this.address2
                 this.venue.town = this.town
