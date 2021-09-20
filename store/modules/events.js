@@ -61,6 +61,19 @@ const actions = {
          catch (error) {
             console.log('Error:' ,error);
         }
+    },
+    async deleteEvent({commit}, event) {
+        //delete event on server
+        await this.$axios.delete(`events/${event.id}`, {
+            headers: {
+                Authorization: `${window.localStorage.getItem('auth._token.local')}`
+            }
+        }).then((res) => {
+            if(res.status == 200){
+                //delete event in state
+                commit('DELETE_EVENT', event.id)
+            }
+        })
     }
 }
 
@@ -71,6 +84,10 @@ const mutations = {
     },
     ADD_EVENT (state, event) {
         state.event.push(event)
+    },
+    DELETE_EVENT (state, eventId) {
+        let events = state.events.filter(e => e.id != eventId)
+        state.events = events
     }
 }
 

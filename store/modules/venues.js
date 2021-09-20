@@ -44,6 +44,20 @@ const actions = {
          catch (error) {
             console.log('Error:' ,error);
         }
+    },
+    async deleteVenue({commit}, venue) {
+        //delete venue on server
+        await this.$axios.delete(`venues/${venue.id}`, {
+            headers: {
+                Authorization: `${window.localStorage.getItem('auth._token.local')}`
+            }
+        }).then((res) => {
+            if(res.status == 200){
+                //delete venue in state
+                commit('DELETE_VENUE', venue.id)
+            }
+        })
+        
     }
 }
 
@@ -54,6 +68,10 @@ const mutations = {
     },
     ADD_VENUE (state, venue) {
         state.venues.push(venue)
+    },
+    DELETE_VENUE (state, venueId) {
+        let venues = state.venues.filter(v => v.id != venueId)
+        state.venues = venues
     }
 }
 

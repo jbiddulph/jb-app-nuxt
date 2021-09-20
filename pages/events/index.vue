@@ -13,6 +13,12 @@
                         <h2>{{ event.eventName }}</h2>
                         <p>{{ event.eventDetails }}</p>
                     </nuxt-link>
+                    <button class="button is-danger is-small" @click="deleteEvent(event)">
+                        <span>Delete</span>
+                        <span class="icon is-small">
+                        <i class="fas fa-times"></i>
+                        </span>
+                    </button>
                 </div>
                 <div class="modal" :class="{'is-active': showModalFlag}">
                     <div class="modal-background"></div>
@@ -62,6 +68,12 @@ import { mapGetters, mapActions } from "vuex";
             cancelModal() {
                 this.okPressed = false;
                 this.showModalFlag = false;
+            },
+            deleteEvent(event) {
+                let response = confirm(`Are you sure you want to delete, ${event.eventName}`)
+                if(response) {
+                    this.$store.dispatch('events/deleteEvent', event)
+                }
             }
             // ...mapActions([
             //     'venues/loadVenues', 

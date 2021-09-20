@@ -13,6 +13,12 @@
                     <h2>{{ venue.venuename }}</h2>
                     <p>{{ venue.address }}</p>
                 </nuxt-link>
+                <button class="button is-danger is-small" @click="deleteVenue(venue)">
+                    <span>Delete</span>
+                    <span class="icon is-small">
+                    <i class="fas fa-times"></i>
+                    </span>
+                </button>
             </div>
             <div class="modal" :class="{'is-active': showModalFlag}">
                 <div class="modal-background"></div>
@@ -59,7 +65,14 @@ import { mapGetters, mapActions } from "vuex";
             cancelModal() {
                 this.okPressed = false;
                 this.showModalFlag = false;
+            },
+            deleteVenue(venue) {
+                let response = confirm(`Are you sure you want to delete, ${venue.venuename}`)
+                if(response) {
+                    this.$store.dispatch('venues/deleteVenue', venue)
+                }
             }
+
             // ...mapActions([
             //     'venues/loadVenues', 
             // ])
@@ -134,6 +147,9 @@ h2 {
         height: 12px;
         width: 12px;
         background-color: #ffffff;
+    }
+    a.navbar-item {
+        flex-direction: column;
     }
 }
 </style>
