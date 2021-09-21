@@ -16,7 +16,7 @@ export default {
       {
         rel: 'stylesheet',
         href: 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css'
-      }
+      },
     ]
   },
 
@@ -25,10 +25,12 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{
+  plugins: [
+    '@plugins/vuetify',
+      {
     src: '~/Plugins/vuex-persist',
     src: '~/Plugins/vuelidate',
-    mode: 'both'
+    mode: 'all'
   }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -39,6 +41,7 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     '@nuxtjs/vuetify',
+    '@nuxtjs/fontawesome',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

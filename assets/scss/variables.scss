@@ -13,7 +13,9 @@ $secondary-20: rgba(140, 0, 153, 0.2);
 .container {
     background-color: #ff6600;
 }
-
+.v-date-picker-table.v-btn.v-btn--active {
+    color: $secondary!important;
+}
 .venue-list {
     .venue {
         

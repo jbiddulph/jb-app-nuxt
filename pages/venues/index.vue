@@ -48,6 +48,7 @@ import { mapGetters, mapActions } from "vuex";
     export default {
         data() {
             return {
+                venuename: '',
                 showModalFlag: false,
                 okPressed: false,
                 message: "Press 'Ok' or 'Cancel'."

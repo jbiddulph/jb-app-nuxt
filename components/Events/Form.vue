@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Add Event</h2>
+        <h2>{{ this.title }}</h2>
         <div class="add">
             <form @submit="postData" method="post">
                 <div class="field">
@@ -11,6 +11,16 @@
                         <div v-if="event.eventName" class="invalid-feedback">
                             <span v-if="!$v.event.eventName.required">Event name is required</span>
                             <span v-if="!$v.event.eventName.minLength">Event name must have at least {{ $v.event.eventName.$params.minLength.min }} characters</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Event Slug</label>
+                    <div class="control">
+                        <input type="text" v-model="event.slug" placeholder="Event Slug" :class="{
+                            'is-invalid':$v.event.slug.$error, 'is-valid':!$v.event.slug.$invalid}">
+                        <div v-if="event.slug" class="invalid-feedback">
+                            <span v-if="!$v.event.slug.required">Event slug is required</span>
                         </div>
                     </div>
                 </div>
@@ -36,6 +46,67 @@
                     </div>
                 </div>
                 <div class="field">
+                    <label class="label">Event Date</label>
+                    <div class="control">
+                        <v-date-picker v-model="event.eventDate"></v-date-picker>
+                        <input type="hidden" v-model="event.eventDate" placeholder="Event Date" :class="{
+                            'is-invalid':$v.event.eventDate.$error, 'is-valid':!$v.event.eventDate.$invalid}">
+                        <div v-if="event.eventDate" class="invalid-feedback">
+                            <span v-if="!$v.event.eventDate.required">Event date is required</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Event Time Start</label>
+                    <div class="control">
+                        <input type="text" v-model="event.eventTimeStart" placeholder="Event Time Start" :class="{
+                            'is-invalid':$v.event.eventTimeStart.$error, 'is-valid':!$v.event.eventTimeStart.$invalid}">
+                        <div v-if="event.eventTimeStart" class="invalid-feedback">
+                            <span v-if="!$v.event.eventTimeStart.required">Event time start is required</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Event Time End</label>
+                    <div class="control">
+                        <input type="text" v-model="event.eventTimeEnd" placeholder="Event Time End" :class="{
+                            'is-invalid':$v.event.eventTimeEnd.$error, 'is-valid':!$v.event.eventTimeEnd.$invalid}">
+                        <div v-if="event.eventTimeEnd" class="invalid-feedback">
+                            <span v-if="!$v.event.eventTimeEnd.required">Event date is required</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Event Photo</label>
+                    <div class="control">
+                        <input type="text" v-model="event.eventPhoto" placeholder="Event Photo" :class="{
+                            'is-invalid':$v.event.eventPhoto.$error, 'is-valid':!$v.event.eventPhoto.$invalid}">
+                        <div v-if="event.eventPhoto" class="invalid-feedback">
+                            <span v-if="!$v.event.eventPhoto.required">Event photo is required</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Event Cost</label>
+                    <div class="control">
+                        <input type="text" v-model="event.eventCost" placeholder="Event Cost" :class="{
+                            'is-invalid':$v.event.eventCost.$error, 'is-valid':!$v.event.eventCost.$invalid}">
+                        <div v-if="event.eventCost" class="invalid-feedback">
+                            <span v-if="!$v.event.eventCost.required">Event cost is required</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Venue</label>
+                    <div class="control">
+                        <input type="number" v-model="event.venue_id" placeholder="Venue" :class="{
+                            'is-invalid':$v.event.venue_id.$error, 'is-valid':!$v.event.venue_id.$invalid}">
+                        <div v-if="event.venue_id" class="invalid-feedback">
+                            <span v-if="!$v.event.venue_id.required">Venue is required</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
                     <label class="label">Live</label>
                     <div class="control">
                         <input type="text" v-model="event.is_live" placeholder="Live">
@@ -48,44 +119,23 @@
 </template>
 <script>
 import { required, minLength, maxLength, between} from 'vuelidate/lib/validators'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
     export default {
-        props: {
-            eventName: {
-                type: String,
-                required: false,
-            },
-            eventDetails: {
-                type: String,
-                required: false,
-            },
-            eventDate: {
-                type: String,
-                required: false,
-            },
-            eventType: {
-                type: String,
-                required: false,
-            },
-            is_live: {
-                type: Boolean,
-                required: false,
-            }
-        },
         data() {
             return { 
-                event: {
+                defaultEvent: {
                     eventName: '',
                     eventDetails: '',
                     slug: '',
                     eventPhoto: '',
-                    eventDate: '',
+                    eventDate: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
                     eventTimeStart: '',
                     eventTimeEnd: '',
                     eventType: '',
                     eventCost: '',
                     is_live: 0
-                }
+                },
+                title: '',   
             }
         },
         validations: {
@@ -104,20 +154,31 @@ import { mapActions } from 'vuex'
                     required,
                     minLength: minLength(3),
                 },
+                slug: {
+                    required,
+                },
+                eventTimeStart: {
+                    required,
+                },
+                eventTimeEnd: {
+                    required,
+                },
+                eventPhoto: {
+                    required,
+                },
+                eventCost: {
+                    required,
+                },
+                venue_id: {
+                    required,
+                },
             }
         },
         mounted() {
             if (this.$route.params.event) {
-                this.event.eventName = this.eventName
-                this.event.eventDetails = this.eventDetails
-                this.event.eventDate = this.eventDate
-                this.event.eventType = this.eventType
-                this.event.slug = this.slug
-                this.event.eventPhoto = this.eventPhoto
-                this.event.eventTimeStart = this.eventTimeStart
-                this.event.eventTimeEnd = this.eventTimeEnd
-                this.event.eventCost = this.eventCost
-                this.event.is_live = this.is_live
+                this.title = 'Edit Event'
+            } else {
+                this.title = 'Add Event'
             }
         },
         methods: {
@@ -136,13 +197,18 @@ import { mapActions } from 'vuex'
                 // }
             }
         },
-        // created() {
-        //     this.$store.dispatch('venues/addVenue');
-        // },
+        computed: {
+            ...mapGetters('events', {
+                events: 'getEvents'
+            }),
+            event() {
+                return this.events.find(e => e.id == this.$route.params.event) ?? this.defaultEvent
+            }
+        }
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     form {
         display: flex;
         width: 100%;
@@ -166,4 +232,17 @@ import { mapActions } from 'vuex'
     .is-valid {
         border: 1px solid #20aa27!important;
     }
+    .v-btn--active {
+        color: #ff9966!important;
+    }
+    .theme--light.v-card {
+        background-color: $primary!important;
+    }
+    .v-date-picker-table {
+        background-color: $secondary!important;
+    } 
+    .v-btn.v-btn--active {
+        background-color: $secondary!important;
+    }
+    
 </style>

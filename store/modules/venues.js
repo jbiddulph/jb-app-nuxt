@@ -57,7 +57,6 @@ const actions = {
                 commit('DELETE_VENUE', venue.id)
             }
         })
-        
     }
 }
 
