@@ -14,6 +14,22 @@ const getters = {
 }
 
 const actions = {
+    async editEvent ({commit}, data) {
+        try {
+            const response = this.$axios.put(`events/${data.id}`, data, {
+                headers: {
+                    Authorization: `${window.localStorage.getItem('auth._token.local')}`
+                },
+            })  // JSON responses are automatically parsed.
+                console.log('Datab: ', data)
+                let savedEvent = response.data
+                commit('EDIT_EVENT', savedEvent)
+                return savedEvent
+            
+        } catch (error) {
+            console.error('Error:', error)
+        }
+    },
     async addEvent ({commit}, data) {
         try {
             const response = this.$axios.post('events', data, {
@@ -88,6 +104,13 @@ const mutations = {
     DELETE_EVENT (state, eventId) {
         let events = state.events.filter(e => e.id != eventId)
         state.events = events
+    },
+    EDIT_EVENT (state, event) {
+        state.events.forEach(e => {
+            if(e.id == event.id) {
+                e = event
+            }
+        }) 
     }
 }
 

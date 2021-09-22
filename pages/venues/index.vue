@@ -79,12 +79,18 @@ import { mapGetters, mapActions } from "vuex";
             // ])
         },
         computed: {
-            ...mapGetters('venues', {
-                venues: 'getVenues'
-            }),
+            ...mapGetters(
+                'venues', {
+                    venues: 'getVenues'
+                },
+                'postcodes', {
+                    postcodes: 'getPostCodes'
+                }
+            ),
         },
         created() {
             this.$store.dispatch('venues/loadVenues');
+            this.$store.dispatch('venues/loadPostCodes');
         },
     }
 </script>
