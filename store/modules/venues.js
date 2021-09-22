@@ -18,6 +18,21 @@ const getters = {
 }
 
 const actions = {
+    // ADD
+    async addVenue ({commit}, data) {
+        try {
+            const response = this.$axios.post('venues', data, {
+                headers: {
+                    Authorization: `${window.localStorage.getItem('auth._token.local')}`
+                },
+            })  // JSON responses are automatically parsed.
+                commit('ADD_VENUE', response)
+            
+        } catch (error) {
+            console.error('Error:', error)
+        }
+    },
+    // EDIT
     async editVenue ({commit}, data) {
         try {
             const response = this.$axios.put(`venues/${data.id}`, data, {
@@ -33,20 +48,7 @@ const actions = {
             console.error('Error:', error)
         }
     },
-    async addVenue ({commit}, data) {
-        try {
-            const response = this.$axios.post('venues', data, {
-                headers: {
-                    Authorization: `${window.localStorage.getItem('auth._token.local')}`
-                },
-            })  // JSON responses are automatically parsed.
-                console.log('Datab: ', data)
-                commit('ADD_VENUE', response)
-            
-        } catch (error) {
-            console.error('Error:', error)
-        }
-    },
+    // GET
     async loadVenues ({commit}) {
         try {
             await this.$axios.get(`venues`, {  
@@ -81,6 +83,7 @@ const actions = {
             console.log('Error:' ,error);
         }
     },
+    // DELETE
     async deleteVenue({commit}, venue) {
         //delete venue on server
         await this.$axios.delete(`venues/${venue.id}`, {

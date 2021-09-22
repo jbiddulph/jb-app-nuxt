@@ -14,6 +14,21 @@ const getters = {
 }
 
 const actions = {
+    // ADD
+    async addEvent ({commit}, data) {
+        try {
+            const response = this.$axios.post('events', data, {
+                headers: {
+                    Authorization: `${window.localStorage.getItem('auth._token.local')}`
+                },
+            })  // JSON responses are automatically parsed.
+                commit('ADD_EVENT', response)
+            
+        } catch (error) {
+            console.error('Error:', error)
+        }
+    },
+    // EDIT
     async editEvent ({commit}, data) {
         try {
             const response = this.$axios.put(`events/${data.id}`, data, {
@@ -21,7 +36,6 @@ const actions = {
                     Authorization: `${window.localStorage.getItem('auth._token.local')}`
                 },
             })  // JSON responses are automatically parsed.
-                console.log('Datab: ', data)
                 let savedEvent = response.data
                 commit('EDIT_EVENT', savedEvent)
                 return savedEvent
@@ -30,20 +44,7 @@ const actions = {
             console.error('Error:', error)
         }
     },
-    async addEvent ({commit}, data) {
-        try {
-            const response = this.$axios.post('events', data, {
-                headers: {
-                    Authorization: `${window.localStorage.getItem('auth._token.local')}`
-                },
-            })  // JSON responses are automatically parsed.
-                console.log('Datab: ', data)
-                commit('ADD_EVENT', response)
-            
-        } catch (error) {
-            console.error('Error:', error)
-        }
-    },
+    // GET
     async loadEvents ({commit}) {
         try {
             await this.$axios.get(`events`, {  
@@ -78,6 +79,7 @@ const actions = {
             console.log('Error:' ,error);
         }
     },
+    // DELETE
     async deleteEvent({commit}, event) {
         //delete event on server
         await this.$axios.delete(`events/${event.id}`, {
