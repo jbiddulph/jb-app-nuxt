@@ -1,7 +1,17 @@
 <template>
     <div>
-        <h2>{{ this.title }}</h2>
+        <h2 class="is-size-2">{{ this.title }}</h2>
+        <nuxt-link v-if="this.$route.params.event" class="button is-warning is-small" :to="`/events`">
+            <svg style="width:24px;height:24px;margin-right:15px;" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M22,3H7C6.31,3 5.77,3.35 5.41,3.88L0,12L5.41,20.11C5.77,20.64 6.31,21 7,21H22A2,2 0 0,0 24,19V5A2,2 0 0,0 22,3M19,15.59L17.59,17L14,13.41L10.41,17L9,15.59L12.59,12L9,8.41L10.41,7L14,10.59L17.59,7L19,8.41L15.41,12" />
+            </svg>
+            Back to Events
+        </nuxt-link>
+        <div v-if="event.eventPhoto" class="image">
+            <img :src="`http://jwtapi.test/${event.eventPhoto}`" height="100" />
+        </div>
         <div class="add">
+            <UploadImage :folder="'events'" :image.sync="event.eventPhoto" />
             <div class="field">
                 <label class="label">Event Name</label>
                 <div class="control">
@@ -96,8 +106,8 @@
             <div class="field">
                 <label class="label">Event Photo</label>
                 <div class="control">
-                    <input type="text" v-model="event.eventPhoto" placeholder="Event Photo" :class="{
-                        'is-invalid':$v.event.eventPhoto.$error, 'is-valid':!$v.event.eventPhoto.$invalid}">
+                    <input type="text" readonly v-model="event.eventPhoto" placeholder="Event Photo" :class="{
+                        'is-invalid':$v.event.eventPhoto.$error, 'is-valid readonly':!$v.event.eventPhoto.$invalid}">
                     <div v-if="event.eventPhoto" class="invalid-feedback">
                         <span v-if="!$v.event.eventPhoto.required">Event photo is required</span>
                     </div>
@@ -129,8 +139,8 @@
                     <input type="checkbox" v-model="event.is_live" placeholder="Live">
                 </div>
             </div>
-            <input v-if="this.$route.params.event" type="submit" @click="editEvent" :value="this.title">
-            <input v-else type="submit" @click="addEvent"  :value="this.title">
+            <input v-if="this.$route.params.event" type="submit" @click="editEvent" :value="this.title" class="button secondary">
+            <input v-else type="submit" @click="addNewEvent" :value="this.title" class="button secondary">
         </div>
     </div>
 </template>
@@ -202,10 +212,9 @@ import { mapActions, mapGetters } from 'vuex'
             ...mapActions({
                 addEvent: 'events/addEvent'
             }),
-            addEvent(e) { 
-                e.preventDefault()
-                console.log('e: ', e.eventDetails)
+            addNewEvent() { 
                 this.addEvent(this.event)
+                this.$router.push('/events')
             },
             async editEvent() {
                 await this.$store.dispatch('events/editEvent', this.event);
@@ -224,13 +233,20 @@ import { mapActions, mapGetters } from 'vuex'
 </script>
 
 <style scoped lang="scss">
+.image img {
+    height: 100px;
+    width: auto;
+}
+.readonly {
+    color: $lightgrey;
+}
     form {
         display: flex;
         width: 100%;
         flex-direction: column;
     }
     input[type="text"], input[type="number"] {
-        border: 1px solid #990066;
+        border: 1px solid $secondary;
         padding:10px;
         flex: 10;
         outline: 0;
@@ -238,7 +254,7 @@ import { mapActions, mapGetters } from 'vuex'
     input[type="submit"] {
         flex: 2;
         cursor: pointer;
-        background-color: #990066;
+        background-color: $secondary;
         color: #fff;
     }
     input[type="text"], input[type="number"] {

@@ -1,7 +1,17 @@
 <template>
     <div>
-        <h2>{{ this.title }}</h2>
+        <h2 class="is-size-2">{{ this.title }}</h2>
+        <nuxt-link  v-if="this.$route.params.venue" class="button is-warning is-small" :to="`/venues`">
+            <svg style="width:24px;height:24px;margin-right:15px;" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M22,3H7C6.31,3 5.77,3.35 5.41,3.88L0,12L5.41,20.11C5.77,20.64 6.31,21 7,21H22A2,2 0 0,0 24,19V5A2,2 0 0,0 22,3M19,15.59L17.59,17L14,13.41L10.41,17L9,15.59L12.59,12L9,8.41L10.41,7L14,10.59L17.59,7L19,8.41L15.41,12" />
+            </svg>
+            Back to Venues
+        </nuxt-link>
+        <div v-if="venue.photo" class="image">
+            <img :src="`http://jwtapi.test/${venue.photo}`" height="100" />
+        </div>
         <div class="add">
+            <UploadImage :folder="'venues'" :image.sync="venue.photo" />
             <div class="field">
                 <label class="label">Venue Name</label>
                 <div class="control">
@@ -168,10 +178,11 @@ import { mapActions, mapGetters } from 'vuex'
                     longitude: null,
                     local_authority: null,
                     website: '',
-                    photo: '',
+                    photo: this.image,
                     is_live: 0,
                 },
-                title: ''
+                title: '',
+                image: ''
             }
         },
         validations: {
@@ -186,20 +197,25 @@ import { mapActions, mapGetters } from 'vuex'
             }
         },
         mounted() {
+            if(this.image) {
+                this.defaultVenue.photo = this.image
+            }
             if (this.$route.params.venue) {
                 this.title = 'Edit Venue'
+                if(this.image) {
+                    this.venue.photo = this.image
+                }
             } else {
                 this.title = 'Add Venue'
             }
+            
         },
         methods: {
             ...mapActions({
                 addVenue: 'venues/addVenue'
             }),
-            addVenue(e) {
-                e.preventDefault()
-                    console.log('e: ', e.fsa_id)
-                    this.addVenue(this.venue)
+            addVenue() {
+                this.addVenue(this.venue)
             },
             async editVenue() {
                 await this.$store.dispatch('venues/editVenue', this.venue);
@@ -218,6 +234,10 @@ import { mapActions, mapGetters } from 'vuex'
 </script>
 
 <style scoped>
+.image img {
+    height: 100px;
+    width: auto;
+}
     form {
         display: flex;
         width: 100%;
