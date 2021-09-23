@@ -148,7 +148,7 @@
                 </div>
             </div>
             <input v-if="this.$route.params.venue" type="submit" @click="editVenue" :value="this.title">
-            <input v-else type="submit" @click="addVenue"  :value="this.title">
+            <input v-else type="submit" @click="addNewVenue"  :value="this.title">
         </div>
     </div>
 </template>
@@ -214,7 +214,7 @@ import { mapActions, mapGetters } from 'vuex'
             ...mapActions({
                 addVenue: 'venues/addVenue'
             }),
-            addVenue() {
+            addNewVenue() {
                 this.addVenue(this.venue)
             },
             async editVenue() {
