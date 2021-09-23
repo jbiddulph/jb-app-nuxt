@@ -24,7 +24,7 @@
               Events
             </a>
             <div class="navbar-dropdown">
-              <nuxt-link class="navbar-item" to="/events/add">Add Event</nuxt-link>
+              <nuxt-link class="navbar-item" to="/events/selectvenue">Add Event</nuxt-link>
               <nuxt-link class="navbar-item" to="/events">Events</nuxt-link>
             </div>
           </div>

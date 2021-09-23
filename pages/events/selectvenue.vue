@@ -2,8 +2,9 @@
     <div>
         <LayoutNavbar/>
         <div class="container">
-            <Events />
-        </div>    
+            <h2>Select a venue</h2>
+            <VenuesSearch />
+        </div>
         <LayoutFooter/>
     </div>
 </template>
@@ -12,9 +13,8 @@
     export default {
         data() {
             return {
+                search: ''
             }
-        },
-        methods: {
         }
     }
 </script>

@@ -83,6 +83,20 @@ const actions = {
             console.log('Error:' ,error);
         }
     },
+    // SEARCH
+    async searchVenues ({commit}, search) {
+        try {
+            const response = this.$axios.get(`venues/search/${search}`, {
+                headers: {
+                    Authorization: `${window.localStorage.getItem('auth._token.local')}`
+                },
+            })  // JSON responses are automatically parsed.
+                commit('SET_VENUE', response)
+            
+        } catch (error) {
+            console.error('Error:', error)
+        }
+    },
     // DELETE
     async deleteVenue({commit}, venue) {
         //delete venue on server
