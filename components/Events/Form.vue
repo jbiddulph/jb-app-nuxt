@@ -126,7 +126,7 @@
             <div class="field">
                 <label class="label">Venue</label>
                 <div class="control">
-                    <input type="number" v-model="event.venue_id" placeholder="Venue" :class="{
+                    <input type="number" v-on:selectedVenue="updateVenue($event)" v-model="event.venue_id" placeholder="Venue" :class="{
                         'is-invalid':$v.event.venue_id.$error, 'is-valid':!$v.event.venue_id.$invalid}">
                     <div v-if="event.venue_id" class="invalid-feedback">
                         <span v-if="!$v.event.venue_id.required">Venue is required</span>
@@ -160,6 +160,7 @@ import { mapActions, mapGetters } from 'vuex'
                     eventTimeEnd: '',
                     eventType: '',
                     eventCost: '',
+                    venue_id: null,
                     is_live: 0
                 },
                 title: '',   
@@ -212,6 +213,7 @@ import { mapActions, mapGetters } from 'vuex'
             ...mapActions({
                 addEvent: 'events/addEvent'
             }),
+            
             addNewEvent() { 
                 this.addEvent(this.event)
                 this.$router.push('/events')

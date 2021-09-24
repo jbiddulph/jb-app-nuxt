@@ -1,6 +1,6 @@
 <template>
   <div class="bd-example is-paddingless">
-    <nav :class="isAuthenticated ? 'navbar is-warning' : 'navbar is-light'">
+    <nav :class="isAuthenticated ? 'navbar is-warning is-fixed-top' : 'navbar is-light is-fixed-top'">
       <div class="navbar-brand">
         <a class="navbar-item" href="/">
           
@@ -24,7 +24,7 @@
               Events
             </a>
             <div class="navbar-dropdown">
-              <nuxt-link class="navbar-item" to="/events/selectvenue">Add Event</nuxt-link>
+              <nuxt-link class="navbar-item" to="/events/add">Add Event</nuxt-link>
               <nuxt-link class="navbar-item" to="/events">Events</nuxt-link>
             </div>
           </div>

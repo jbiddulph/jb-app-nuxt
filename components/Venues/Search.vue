@@ -6,10 +6,12 @@
         <input class="input is-large" @keyup="searchVenues" v-model="search" type="text" placeholder="Search postcode">
         <div class="venue-list">
             <div v-for="venue in venues" v-bind:key="venue.id">
-                <VenuesCard 
-                    :name="venue.venuename"
-                    :address="venue.address"
-                />
+                <button @click="selectVenue(venue.id)">
+                    <VenuesCard 
+                        :name="venue.venuename"
+                        :address="venue.address"
+                    />
+                </button>
             </div>
             <div class="modal" :class="{'is-active': showModalFlag}">
                 <div class="modal-background"></div>
@@ -41,10 +43,14 @@ import { mapGetters, mapActions } from "vuex";
                 showModalFlag: false,
                 okPressed: false,
                 message: "",
-                search: ''
+                search: '',
             }
         },
         methods: {
+            selectVenue(id) {
+                console.log('Selected venue: ',id)
+                this.$emit('selectedVenue', id)
+            },
             showModal() {
                 this.okPressed = false;
                 this.showModalFlag = true;
