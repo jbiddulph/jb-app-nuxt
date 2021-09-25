@@ -30,7 +30,6 @@
                         'is-invalid':$v.user.email.$error, 'is-valid':!$v.user.email.$invalid}">
                     <div v-if="user.email" class="invalid-feedback">
                         <span v-if="!$v.user.email.required">Email details is required</span>
-                        <span v-if="!$v.user.email.minLength">Email details must have at least {{ $v.event.eventDetails.$params.minLength.min }} characters</span>
                     </div>
                 </div>
             </div>

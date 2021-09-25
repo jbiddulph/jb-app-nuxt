@@ -49,7 +49,7 @@ import { mapGetters, mapActions } from "vuex";
         methods: {
             selectVenue(id) {
                 console.log('Selected venue: ',id)
-                this.$emit('selectedVenue', id)
+                this.$store.commit('venues/VENUE_CHANGED', id)
             },
             showModal() {
                 this.okPressed = false;

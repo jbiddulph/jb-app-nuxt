@@ -1,5 +1,6 @@
 <template>
     <div>
+        VENUE ID: {{venue_id}}
         <h2 class="is-size-2">{{ this.title }}</h2>
         <nuxt-link v-if="this.$route.params.event" class="button is-warning is-small" :to="`/events`">
             <svg style="width:24px;height:24px;margin-right:15px;" viewBox="0 0 24 24">
@@ -125,12 +126,15 @@
             </div>
             <div class="field">
                 <label class="label">Venue</label>
-                <div class="control">
+                <!-- <div class="control" v-if="!venue_id">
                     <input type="number" v-model="event.venue_id" placeholder="Venue" :class="{
                         'is-invalid':$v.event.venue_id.$error, 'is-valid':!$v.event.venue_id.$invalid}">
                     <div v-if="event.venue_id" class="invalid-feedback">
                         <span v-if="!$v.event.venue_id.required">Venue is required</span>
                     </div>
+                </div> -->
+                <div class="control">
+                    <input type="number" v-model="venue_id" placeholder="Venue" class="is-valid">
                 </div>
             </div>
             <div class="field">
@@ -235,6 +239,9 @@ import { mapActions, mapGetters } from 'vuex'
             }),
             event() {
                 return this.events.find(e => e.id == this.$route.params.event) ?? this.defaultEvent
+            },
+            venue_id() {
+                return this.$store.state.venues.venue_id
             }
         }
     }
