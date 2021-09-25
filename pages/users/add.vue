@@ -2,8 +2,7 @@
     <div>
         <LayoutNavbar/>
         <div class="container">
-            <VenuesSearch :venueSearch="venueSearch" />
-            <EventsForm  />
+            <UsersForm  />
         </div>
         <LayoutFooter/>
     </div>
@@ -11,20 +10,11 @@
 
 <script>
     export default {
-        props: {
-            venueSearch: {
-            type: Number,
-            required: false,
-            }
-        },
         data() {
             return {
             }
         },
         methods: {
-            selectVenue(venue_id) {
-                console.log('VENUE ID: ',venue_id)
-            },
         },
         mounted() {}
     }

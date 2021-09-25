@@ -37,6 +37,15 @@
               <nuxt-link class="navbar-item" to="/venues">Venues</nuxt-link>
             </div>
           </div>
+          <div v-if="isAuthenticated" class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Users
+            </a>
+            <div class="navbar-dropdown">
+              <nuxt-link class="navbar-item" to="/users/add">Add User</nuxt-link>
+              <nuxt-link class="navbar-item" to="/users">Users</nuxt-link>
+            </div>
+          </div>
         </div>
 
         <div class="navbar-end">
