@@ -1,6 +1,7 @@
 const state = () => ({
     venues: [],
     venue_id: 0,
+    venuename: '',
     postcodes: [],
     pagination: {
         page: 1,
@@ -116,8 +117,9 @@ const actions = {
 
 
 const mutations = {
-    VENUE_CHANGED(state, id) {
-        state.venue_id = id
+    VENUE_CHANGED(state, venue) {
+        state.venue_id = venue.id
+        state.venuename = venue.venuename
     },
     SET_POSTCODES (state, postcodes) {
         state.postcodes = postcodes

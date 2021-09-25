@@ -6,7 +6,7 @@
         <input class="input is-large" @keyup="searchVenues" v-model="search" type="text" placeholder="Search postcode">
         <div class="venue-list">
             <div v-for="venue in venues" v-bind:key="venue.id">
-                <button @click="selectVenue(venue.id)">
+                <button @click="selectVenue(venue)">
                     <VenuesCard 
                         :name="venue.venuename"
                         :address="venue.address"
@@ -47,9 +47,9 @@ import { mapGetters, mapActions } from "vuex";
             }
         },
         methods: {
-            selectVenue(id) {
-                console.log('Selected venue: ',id)
-                this.$store.commit('venues/VENUE_CHANGED', id)
+            selectVenue(venue) {
+                console.log('Selected venue: ',venue)
+                this.$store.commit('venues/VENUE_CHANGED', venue)
             },
             showModal() {
                 this.okPressed = false;

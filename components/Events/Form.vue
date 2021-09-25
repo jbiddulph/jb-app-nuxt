@@ -1,6 +1,7 @@
 <template>
     <div>
-        VENUE ID: {{venue_id}}
+        <p>VENUE ID: {{venue_id}}</p>
+        <p>VENUE: {{venuename}}</p>
         <h2 class="is-size-2">{{ this.title }}</h2>
         <nuxt-link v-if="this.$route.params.event" class="button is-warning is-small" :to="`/events`">
             <svg style="width:24px;height:24px;margin-right:15px;" viewBox="0 0 24 24">
@@ -152,12 +153,6 @@
 import { required, minLength, maxLength, between} from 'vuelidate/lib/validators'
 import { mapActions, mapGetters } from 'vuex'
     export default {
-        props: {
-            venue_id: {
-            type: String,
-            required: false,
-            }
-        },
         data() {
             return { 
                 defaultEvent: {
@@ -242,6 +237,9 @@ import { mapActions, mapGetters } from 'vuex'
             },
             venue_id() {
                 return this.$store.state.venues.venue_id
+            },
+            venuename() {
+                return this.$store.state.venues.venuename
             }
         }
     }
