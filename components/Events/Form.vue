@@ -165,7 +165,7 @@ import { mapActions, mapGetters } from 'vuex'
                     eventTimeEnd: '',
                     eventType: '',
                     eventCost: '',
-                    venue_id: null,
+                    venue_id: this.venue_id,
                     is_live: 0
                 },
                 title: '',   
@@ -213,6 +213,7 @@ import { mapActions, mapGetters } from 'vuex'
             } else {
                 this.title = 'Add Event'
             }
+            this.defaultEvent.venue_id = this.venue_id
         },
         methods: {
             ...mapActions({
@@ -220,6 +221,7 @@ import { mapActions, mapGetters } from 'vuex'
             }),
             
             addNewEvent() { 
+                this.event.venue_id = this.venue_id
                 this.addEvent(this.event)
                 this.$router.push('/events')
             },
@@ -227,6 +229,11 @@ import { mapActions, mapGetters } from 'vuex'
                 await this.$store.dispatch('events/editEvent', this.event);
                 this.$router.push('/events')
             }   
+        },
+        mounted() {
+            console.log('defaultEvent: ',this.defaultEvent)
+            this.$store.state.venues.venue_id == this.venue_id
+            
         },
         computed: {
             ...mapGetters('events', {
@@ -236,7 +243,7 @@ import { mapActions, mapGetters } from 'vuex'
                 return this.events.find(e => e.id == this.$route.params.event) ?? this.defaultEvent
             },
             venue_id() {
-                return this.$store.state.venues.venue_id
+                return this.$store.state.venues.venue_id ?? this.defaultEvent.venue_id
             },
             venuename() {
                 return this.$store.state.venues.venuename
