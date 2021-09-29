@@ -1,34 +1,43 @@
 <template>
     <div>
-        <div class="title-button">
-            <h1 class="is-size-2">Venues</h1>
-        </div>
-        <input class="input is-large" @keyup="searchVenues" v-model="search" type="text" placeholder="Search postcode">
-        <div class="venue-list">
-            <div v-for="venue in venues" v-bind:key="venue.id">
-                <button @click="selectVenue(venue)">
-                    <VenuesCard 
-                        :name="venue.venuename"
-                        :address="venue.address"
-                    />
-                </button>
+        <div v-if="!selectedVenue">
+            <div class="title-button">
+                <h1 class="is-size-2">Search Postcode</h1>
             </div>
-            <div class="modal" :class="{'is-active': showModalFlag}">
-                <div class="modal-background"></div>
-                <div class="modal-card">
-                    <header class="modal-card-head">
-                    <p class="modal-card-title">Add a new Venue</p>
-                    <button class="delete" aria-label="close" @click="cancelModal">></button>
-                    </header>
-                    <section class="modal-card-body">
-                    <p>{{ message }}</p>
-                    <p><VenuesForm /></p>
-                    </section>
-                    <footer class="modal-card-foot">
-                    <button class="button" @click="cancelModal">Cancel</button>
-                    </footer>
+            <input class="input is-large" @keyup="searchVenues" v-model="search" type="text" placeholder="Search postcode">
+            <div class="venue-list">
+                <div v-for="venue in venues" v-bind:key="venue.id">
+                    <button @click="selectVenue(venue)">
+                        <VenuesCard 
+                            :name="venue.venuename"
+                            :address="venue.address"
+                        />
+                    </button>
+                </div>
+                <div class="modal" :class="{'is-active': showModalFlag}">
+                    <div class="modal-background"></div>
+                    <div class="modal-card">
+                        <header class="modal-card-head">
+                        <p class="modal-card-title">Add a new Venue</p>
+                        <button class="delete" aria-label="close" @click="cancelModal">></button>
+                        </header>
+                        <section class="modal-card-body">
+                        <p>{{ message }}</p>
+                        <p><VenuesForm /></p>
+                        </section>
+                        <footer class="modal-card-foot">
+                        <button class="button" @click="cancelModal">Cancel</button>
+                        </footer>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div v-if="selectedVenue">
+            <br />
+            <br />
+            <br />
+            <br />
+            <button class="button" @click="reselectVenue()">Select a different venue</button>
         </div>
     </div>
 </template>
@@ -44,12 +53,18 @@ import { mapGetters, mapActions } from "vuex";
                 okPressed: false,
                 message: "",
                 search: '',
+                selectedVenue: false
             }
         },
         methods: {
             selectVenue(venue) {
                 console.log('Selected venue: ',venue)
+                this.search = ''
+                this.selectedVenue = true
                 this.$store.commit('venues/VENUE_CHANGED', venue)
+            },
+            reselectVenue() {
+                this.selectedVenue = false
             },
             showModal() {
                 this.okPressed = false;
