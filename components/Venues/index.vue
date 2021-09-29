@@ -78,7 +78,7 @@ import { mapGetters, mapActions } from "vuex";
             }
 
             // ...mapActions([
-            //     'venues/loadVenues', 
+            //     'venues/loadAdminVenues', 
             // ])
         },
         computed: {
@@ -86,14 +86,14 @@ import { mapGetters, mapActions } from "vuex";
                 'venues', {
                     venues: 'getVenues'
                 },
-                'postcodes', {
-                    postcodes: 'getPostCodes'
-                }
+                // 'postcodes', {
+                //     postcodes: 'getPostCodes'
+                // }
             ),
         },
         created() {
             this.$store.dispatch('venues/loadVenues');
-            this.$store.dispatch('venues/loadPostCodes');
+            // this.$store.dispatch('venues/loadPostCodes');
         },
     }
 </script>

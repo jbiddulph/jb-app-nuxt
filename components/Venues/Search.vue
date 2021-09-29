@@ -89,7 +89,7 @@ import { mapGetters, mapActions } from "vuex";
             }
 
             // ...mapActions([
-            //     'venues/loadVenues', 
+            //     'venues/loadAdminVenues', 
             // ])
         },
         computed: {

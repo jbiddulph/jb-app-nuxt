@@ -55,12 +55,26 @@ const actions = {
         try {
             await this.$axios.get(`venues`, {  
             // await this.$axios.get(`venues?current_page=${pagination.page}&per_page=${pagination.limit}`, {
+            }).then((res) => {
+                // JSON responses are automatically parsed.
+                console.log('resiii: ', res.data)
+                commit('SET_VENUES', res.data.data)
+            })
+        }
+         catch (error) {
+            console.log('Error:' ,error);
+        }
+    },
+    async loadAdminVenues ({commit}) {
+        try {
+            await this.$axios.get(`admin/venues`, {  
+            // await this.$axios.get(`venues?current_page=${pagination.page}&per_page=${pagination.limit}`, {
                 headers: {
                     Authorization: `${window.localStorage.getItem('auth._token.local')}`
                 }
             }).then((res) => {
                 // JSON responses are automatically parsed.
-                console.log('res: ', res.data)
+                console.log('resooo: ', res.data)
                 commit('SET_VENUES', res.data.data)
             })
         }
