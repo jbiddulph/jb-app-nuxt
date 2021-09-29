@@ -6,11 +6,13 @@
       :loggedIn="isAuthenticated" 
   /> -->
   <LayoutNavbar/>
-  <Home/>
+  <Home />
+  <h2>Here I am! Here I am!</h2>
   <LayoutFooter/>
 </div>
 </template>
 
 <script>
-export default {}
+export default {
+}
 </script>

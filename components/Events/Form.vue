@@ -223,11 +223,11 @@ import { mapActions, mapGetters } from 'vuex'
             addNewEvent() { 
                 this.event.venue_id = this.venue_id
                 this.addEvent(this.event)
-                this.$router.push('/events')
+                this.$router.push('/admin/events')
             },
             async editEvent() {
                 await this.$store.dispatch('events/editEvent', this.event);
-                this.$router.push('/events')
+                this.$router.push('/admin/events')
             }   
         },
         mounted() {

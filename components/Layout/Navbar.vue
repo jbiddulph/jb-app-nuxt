@@ -24,8 +24,8 @@
               Events
             </a>
             <div class="navbar-dropdown">
-              <nuxt-link class="navbar-item" to="/events/add">Add Event</nuxt-link>
-              <nuxt-link class="navbar-item" to="/events">Events</nuxt-link>
+              <nuxt-link class="navbar-item" to="/admin/events/add">Add Event</nuxt-link>
+              <nuxt-link class="navbar-item" to="/admin/events">Events</nuxt-link>
             </div>
           </div>
           <div v-if="isAuthenticated" class="navbar-item has-dropdown is-hoverable">
@@ -33,8 +33,8 @@
               Venues
             </a>
             <div class="navbar-dropdown">
-              <nuxt-link class="navbar-item" to="/venues/add">Add Venue</nuxt-link>
-              <nuxt-link class="navbar-item" to="/venues">Venues</nuxt-link>
+              <nuxt-link class="navbar-item" to="/admin/venues/add">Add Venue</nuxt-link>
+              <nuxt-link class="navbar-item" to="/admin/venues">Venues</nuxt-link>
             </div>
           </div>
           <div v-if="isAuthenticated" class="navbar-item has-dropdown is-hoverable">
@@ -42,8 +42,8 @@
               Users
             </a>
             <div class="navbar-dropdown">
-              <nuxt-link class="navbar-item" to="/users/add">Add User</nuxt-link>
-              <nuxt-link class="navbar-item" to="/users">Users</nuxt-link>
+              <nuxt-link class="navbar-item" to="/admin/users/add">Add User</nuxt-link>
+              <nuxt-link class="navbar-item" to="/admin/users">Users</nuxt-link>
             </div>
           </div>
         </div>
@@ -94,7 +94,6 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  
   props: {
     username: String,
     loggedIn: Boolean,

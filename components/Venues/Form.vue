@@ -216,11 +216,11 @@ import { mapActions, mapGetters } from 'vuex'
             }),
             addNewVenue() {
                 this.addVenue(this.venue)
-                this.$router.push('/venues')
+                this.$router.push('/admin/venues')
             },
             async editVenue() {
                 await this.$store.dispatch('venues/editVenue', this.venue);
-                this.$router.push('/venues')
+                this.$router.push('/admin/venues')
             }
         },
         computed: {
