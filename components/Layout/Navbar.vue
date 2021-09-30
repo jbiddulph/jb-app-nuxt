@@ -16,9 +16,12 @@
 
       <div id="navMenu" class="navbar-menu" :class="{ 'is-active': showNav }">
         <div class="navbar-start">
-          <a class="navbar-item" href="/">
-            Home
-          </a>
+          <div v-if="!isAuthenticated" class="main-menu">
+            <nuxt-link class="navbar-item" to="/">Home</nuxt-link>
+            <nuxt-link class="navbar-item" to="/events">Events</nuxt-link>
+            <nuxt-link class="navbar-item" to="/venues">Venues</nuxt-link>
+          </div>
+
           <div v-if="isAuthenticated" class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
               Events
@@ -117,3 +120,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.main-menu {
+  display: flex;
+  flex-direction: row;
+}
+</style>

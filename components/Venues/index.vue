@@ -2,7 +2,7 @@
     <div>
         <div class="title-button">
                 <h1 class="is-size-2">Venues</h1>
-                <button class="button is-primary is-large modal-button" data-target="modal" aria-haspopup="true" @click="showModal">+ Add Venue</button>
+                <button v-if="isAuthenticated" class="button is-primary is-large modal-button" data-target="modal" aria-haspopup="true" @click="showModal">+ Add Venue</button>
             </div>
             <div class="venue-list">
                 <div v-for="venue in venues" v-bind:key="venue.id">
@@ -64,6 +64,9 @@ import { mapGetters, mapActions } from "vuex";
                 'venues', {
                     venues: 'getVenues'
                 },
+                {
+                    isAuthenticated : 'auth/isAuthenticated',
+                }
                 // 'postcodes', {
                 //     postcodes: 'getPostCodes'
                 // }

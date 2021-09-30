@@ -1,8 +1,14 @@
 <template>    
-    <div class="venue">
-        <h2>{{ venue.venuename }}</h2>
-        <p>{{ venue.address }}</p>
-        <div v-if="isAuthenticated">
+    <div>
+        <div v-if="!isAuthenticated" class="venue">
+            <nuxt-link class="button is-warning is-small" :to="`/venues/${venue.id}`">
+                <h2>{{ venue.venuename }}</h2>
+                <p>{{ venue.address }}</p>
+            </nuxt-link>
+        </div>
+        <div v-else class="venue">
+            <h2>{{ venue.venuename }}</h2>
+            <p>{{ venue.address }}</p>
             <nuxt-link class="button is-warning is-small" :to="`/admin/venues/${venue.id}`">
                 Edit
                 <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -50,8 +56,11 @@ import { mapGetters } from 'vuex'
         width: 100% !important;
         flex: auto;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
     }
+}
+.box {
+    display: flex;
 }
 .venueholder {
     display: flex;
@@ -62,12 +71,7 @@ import { mapGetters } from 'vuex'
         font-size: 1.6rem;
         line-height: 28px;
     }
-    position: relative;
-    width:200px;
-    display: flex;
-    flex-direction: column;
     color: #990066;
-    font-weight: bold;
     flex-wrap: wrap;
     border: 1px solid #e2e2e2;
     border-top-left-radius: 10px;
@@ -77,6 +81,10 @@ import { mapGetters } from 'vuex'
     padding:5px;
     justify-content: space-evenly;
     background-color: #fff8dc;
+    a {
+        display: flex;
+        flex-direction: column;
+    }
     a.navbar-item {
         flex-direction: column;
     }
