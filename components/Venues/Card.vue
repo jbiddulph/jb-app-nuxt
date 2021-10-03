@@ -1,15 +1,24 @@
 <template>    
     <div>
         <div v-if="!isAuthenticated" class="venue">
-            <nuxt-link class="button is-warning is-small" :to="`/venues/${venue.id}`">
-                <h2>{{ venue.venuename }}</h2>
+            <div v-if="venue.photo" class="bg-image" :style="`background-image: url(http://jwtapi.test/${venue.photo})`">
+            </div>
+            <div class="text">
+                <h2 class="is-size-3">{{ venue.venuename }}</h2>
                 <p>{{ venue.address }}</p>
+            </div>
+            <nuxt-link class="button is-warning" :to="`/venues/${venue.id}`">
+                View
             </nuxt-link>
         </div>
         <div v-else class="venue">
-            <h2>{{ venue.venuename }}</h2>
-            <p>{{ venue.address }}</p>
-            <nuxt-link class="button is-warning is-small" :to="`/admin/venues/${venue.id}`">
+            <div v-if="venue.photo" class="bg-image" :style="`background-image: url(http://jwtapi.test/${venue.photo})`">
+            </div>
+            <div class="text">
+                <h2 class="is-size-3">{{ venue.venuename }}</h2>
+                <p>{{ venue.address }}</p>
+            </div>
+            <nuxt-link class="button is-warning" :to="`/admin/venues/${venue.id}`">
                 Edit
                 <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M5,3C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19H5V5H12V3H5M17.78,4C17.61,4 17.43,4.07 17.3,4.2L16.08,5.41L18.58,7.91L19.8,6.7C20.06,6.44 20.06,6 19.8,5.75L18.25,4.2C18.12,4.07 17.95,4 17.78,4M15.37,6.12L8,13.5V16H10.5L17.87,8.62L15.37,6.12Z" />
@@ -59,6 +68,19 @@ import { mapGetters } from 'vuex'
         flex-direction: column;
     }
 }
+.text {
+    padding:10px;
+}
+.button {
+    width: 100%;
+    padding:10px;
+}
+.bg-image {
+    display: flex;
+    height:200px;
+    background-size: cover;
+    background-position: center;
+}
 .box {
     display: flex;
 }
@@ -68,18 +90,18 @@ import { mapGetters } from 'vuex'
 }
 .venue {
     h2 {
-        font-size: 1.6rem;
-        line-height: 28px;
+        line-height: 34px;
+        margin-bottom: 10px;
     }
+    width: 360px;
+    height: 500px;
     color: #990066;
     flex-wrap: wrap;
     border: 1px solid #e2e2e2;
-    border-top-left-radius: 10px;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     margin-bottom: 30px;
-    padding:5px;
-    justify-content: space-evenly;
+    justify-content: start;
     background-color: #fff8dc;
     a {
         display: flex;

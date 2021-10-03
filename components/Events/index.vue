@@ -2,7 +2,7 @@
     <div>
         <div class="title-button">
             <h1 class="is-size-2">Events</h1>
-            <button class="button is-primary is-large modal-button" data-target="modal" aria-haspopup="true" @click="showModal">+ Add Event</button>
+            <button v-if="isAuthenticated" class="button is-primary is-large modal-button" data-target="modal" aria-haspopup="true" @click="showModal">+ Add Event</button>
         </div>
         <div class="event-list">
             <div v-for="event in events" v-bind:key="event.id" @click="showEvent(event.id)">
@@ -64,8 +64,12 @@ import { mapGetters, mapActions } from "vuex";
         },
         computed: {
             ...mapGetters('events', {
-                events: 'getEvents'
-            }),
+                    events: 'getEvents'
+                },
+                {
+                    isAuthenticated : 'auth/isAuthenticated',
+                }
+            ),
         },
         created() {
             this.$store.dispatch('events/loadEvents');
@@ -74,20 +78,6 @@ import { mapGetters, mapActions } from "vuex";
 </script>
 
 <style lang="scss" scoped>
-.container {
-    max-width: 1140px;
-    margin: 0 auto;
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-}
-h1 {
-    font-size: 2.3rem;
-    font-weight: bold;
-}
-h2 {
-    font-size: 1.6rem;
-    line-height: 28px;
-}
 .title-button {
     margin-top:30px;
     display: flex;

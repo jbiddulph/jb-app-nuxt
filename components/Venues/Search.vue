@@ -5,12 +5,11 @@
                 <h1 class="is-size-2">Search Postcode</h1>
             </div>
             <input class="input is-large" @keyup="searchVenues" v-model="search" type="text" placeholder="Search postcode">
-            <div class="venue-list">
+            <div class="searched-venue-list">
                 <div v-for="venue in venues" v-bind:key="venue.id">
                     <button @click="selectVenue(venue)">
-                        <VenuesCard 
-                            :name="venue.venuename"
-                            :address="venue.address"
+                        <VenuesSearched 
+                            :venue="venue"
                         />
                     </button>
                 </div>
@@ -121,20 +120,6 @@ import { mapGetters, mapActions } from "vuex";
 </script>
 
 <style lang="scss" scoped>
-.container {
-    max-width: 1140px;
-    margin: 0 auto;
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-}
-h1 {
-    font-size: 2.3rem;
-    font-weight: bold;
-}
-h2 {
-    font-size: 1.6rem;
-    line-height: 28px;
-}
 .title-button {
     margin-top:30px;
     display: flex;
@@ -142,12 +127,13 @@ h2 {
     justify-content: space-between;
     align-items: center;
 }
-.venue-list {
+.searched-venue-list {
     display: flex;
-    flex-direction: row;
+    
+    flex-direction: column;
     flex-wrap: wrap;
-    justify-content: space-evenly;
     margin:  30px 0px 60px 0px;
+    text-align: center;
     p {
         font-weight: 300;
     }

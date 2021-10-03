@@ -58,6 +58,7 @@ export default {
   // Style Resources
   styleResources: {
     scss: [
+        'assets/scss/styles.scss',
         'assets/scss/variables.scss',
     ]
   },

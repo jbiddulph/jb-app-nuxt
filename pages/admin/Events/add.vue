@@ -3,7 +3,7 @@
         <LayoutNavbar/>
         <div class="container">
             <VenuesSearch :venueSearch="venueSearch" />
-            <EventsForm  />
+            <EventsForm />
         </div>
         <LayoutFooter/>
     </div>

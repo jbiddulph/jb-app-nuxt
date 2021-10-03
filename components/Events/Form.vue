@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="venue_id && venuename != ''">
         <h2 class="is-size-2">{{ this.title }}</h2>
         <h3 class="is-size-3">VENUE: {{venuename}}</h3>
         <nuxt-link v-if="this.$route.params.event" class="button is-warning is-small" :to="`/admin/events`">
@@ -134,7 +134,7 @@
                     </div>
                 </div> -->
                 <div class="control">
-                    <input type="number" v-model="venue_id" placeholder="Venue" class="is-valid">
+                    <input type="number" readonly v-model="venue_id" placeholder="Venue" class="is-valid readonly">
                 </div>
             </div>
             <div class="field">

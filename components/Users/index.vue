@@ -92,20 +92,6 @@ import { mapGetters, mapActions } from "vuex";
 </script>
 
 <style lang="scss" scoped>
-.container {
-    max-width: 1140px;
-    margin: 0 auto;
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-}
-h1 {
-    font-size: 2.3rem;
-    font-weight: bold;
-}
-h2 {
-    font-size: 1.6rem;
-    line-height: 28px;
-}
 .title-button {
     margin-top:30px;
     display: flex;

@@ -2,6 +2,7 @@
     <div>
         <LayoutNavbar/>
         <div class="container">
+            <VenuesSearch :venueSearch="venueSearch" />
             <EventsForm />
         </div>
         <LayoutFooter/>

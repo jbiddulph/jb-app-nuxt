@@ -1,5 +1,6 @@
 const state = () => ({
     venues: [],
+    venue: {},
     venue_id: 0,
     venuename: '',
     postcodes: [],

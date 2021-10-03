@@ -2,11 +2,9 @@
   <div class="bd-example is-paddingless">
     <nav :class="isAuthenticated ? 'navbar is-warning is-fixed-top' : 'navbar is-light is-fixed-top'">
       <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-          
-            <img src="~/assets/images/logo.png" alt="Logo" width="112" height="28">
-          
-        </a>
+        <nuxt-link class="navbar-item" to="/">
+          <img src="~/assets/images/logo.png" alt="Logo" width="112" height="28">
+        </nuxt-link>
         <div class="navbar-burger" data-target="navMenu" @click="showNav = !showNav" :class="{ 'is-active': showNav }">
           <span></span>
           <span></span>

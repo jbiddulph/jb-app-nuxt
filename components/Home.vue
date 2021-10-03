@@ -5,6 +5,7 @@
             <div>
                 <!-- {{ $store.state.localStorage.token }} -->
                 {{ username }}
+                xxx
             </div>
         </div>
     </div>

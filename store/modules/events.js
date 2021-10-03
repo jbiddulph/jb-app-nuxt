@@ -37,6 +37,7 @@ const actions = {
                 },
             })  // JSON responses are automatically parsed.
                 let savedEvent = response.data
+                // console.log('savedEvent: ',savedEvent)
                 commit('EDIT_EVENT', savedEvent)
                 return savedEvent
             
