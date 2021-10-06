@@ -1,7 +1,8 @@
 <template>    
     <div>
         <div v-if="!isAuthenticated" class="venue">
-            <div v-if="venue.photo" class="bg-image" :style="`background-image: url(http://jwtapi.test/${venue.photo})`">
+            <!-- <div v-if="venue.photo" class="bg-image" :style="`background-image: url(http://jwtapi.test/${venue.photo})`"> -->
+            <div v-if="venue.photo" class="bg-image" :style="`background-image: url(${venue.photo})`">
             </div>
             <div class="text">
                 <h2 class="is-size-3">{{ venue.venuename }}</h2>
@@ -12,7 +13,8 @@
             </nuxt-link>
         </div>
         <div v-else class="venue">
-            <div v-if="venue.photo" class="bg-image" :style="`background-image: url(http://jwtapi.test/${venue.photo})`">
+            <!-- <div v-if="venue.photo" class="bg-image" :style="`background-image: url(http://jwtapi.test/${venue.photo})`"> -->
+            <div v-if="venue.photo" class="bg-image" :style="`background-image: url(${venue.photo})`">
             </div>
             <div class="text">
                 <h2 class="is-size-3">{{ venue.venuename }}</h2>
@@ -87,13 +89,14 @@ import { mapGetters } from 'vuex'
 .venueholder {
     display: flex;
     flex: auto;
+    width: 100%;
 }
 .venue {
     h2 {
         line-height: 34px;
         margin-bottom: 10px;
     }
-    width: 360px;
+    width: 100%!important;
     height: 500px;
     color: #990066;
     flex-wrap: wrap;

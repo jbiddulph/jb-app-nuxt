@@ -1,10 +1,10 @@
 <template>
-    <div>
-        <div v-if="!selectedVenue">
-            <div class="title-button">
-                <h1 class="is-size-2">Search Postcode</h1>
+    <div class="pc-search-holder">
+        <div v-if="!selectedVenue" class="container">
+            <div class="title-search">
+                <h1 class="is-size-2 mr-4 text-center">Find venue by postcode</h1>
+                <input class="postcode-search input is-large" @keyup="searchVenues" v-model="search" type="text" maxlength="8" placeholder="Start typing post code">
             </div>
-            <input class="input is-large" @keyup="searchVenues" v-model="search" type="text" placeholder="Search postcode">
             <div class="searched-venue-list">
                 <div v-for="venue in venues" v-bind:key="venue.id">
                     <button @click="selectVenue(venue)">
@@ -31,12 +31,8 @@
                 </div>
             </div>
         </div>
-        <div v-if="selectedVenue">
-            <br />
-            <br />
-            <br />
-            <br />
-            <button class="button" @click="reselectVenue()">Select a different venue</button>
+        <div v-if="selectedVenue" class="mt-4 text-center">
+            <button class="button m-4" @click="reselectVenue()">Select a different venue</button>
         </div>
     </div>
 </template>
@@ -120,11 +116,27 @@ import { mapGetters, mapActions } from "vuex";
 </script>
 
 <style lang="scss" scoped>
-.title-button {
-    margin-top:30px;
+h1 {
+    color: $white;
+    font-weight: lighter;
+    line-height: 2.5rem;
+}
+.pc-search-holder {
+    background: linear-gradient($primary-80, $primary);
+    // background-color: $primary-80!important;
+}
+.postcode-search {
+    width: 300px !important;
+    background-color: $primary-20;
+    border: 1px solid $white;
+    color: $white;
+    font-weight: 300;
+}
+.title-search {
+    margin-top:80px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content:flex-start;
     align-items: center;
 }
 .searched-venue-list {
@@ -138,5 +150,12 @@ import { mapGetters, mapActions } from "vuex";
         font-weight: 300;
     }
 }
-
+@media only screen and (max-width: 600px) {
+    h1 {
+        margin-bottom: 20px;
+    }
+    .title-search {
+        flex-direction: column;
+    }
+}
 </style>

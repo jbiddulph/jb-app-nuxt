@@ -69,10 +69,10 @@ import { mapGetters } from 'vuex'
     }
     width: 100%;
     height: auto;
-    color: #990066;
+    color: $offwhite;
     flex-wrap: wrap;
     align-content: center;
-    border-bottom: 2px dashed #d2d2d2;
+    border-bottom: 2px dashed $primary-80;
     a {
         display: flex;
         flex-direction: column;

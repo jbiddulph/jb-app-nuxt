@@ -42,6 +42,7 @@ export default {
     '@nuxtjs/tailwindcss',
     '@nuxtjs/vuetify',
     '@nuxtjs/fontawesome',
+    '@nuxtjs/moment'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -50,6 +51,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth',
     '@nuxtjs/style-resources',
+    '@nuxtjs/moment',
     ['nuxt-vuex-localstorage', {
       mode: 'manual'
     }]

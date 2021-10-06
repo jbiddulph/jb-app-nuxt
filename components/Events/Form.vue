@@ -1,5 +1,5 @@
 <template>
-    <div v-if="venue_id && venuename != ''">
+    <div v-if="venue_id && venuename != ''" class="container">
         <h2 class="is-size-2">{{ this.title }}</h2>
         <h3 class="is-size-3">VENUE: {{venuename}}</h3>
         <nuxt-link v-if="this.$route.params.event" class="button is-warning is-small" :to="`/admin/events`">
@@ -143,6 +143,10 @@
                     <input type="checkbox" v-model="event.is_live" placeholder="Live">
                 </div>
             </div>
+            <div v-if="showNotification" class="notification is-success is-light">
+            <button class="delete" @click="closeNotification()"></button>
+                {{successMessage}}
+            </div>
             <input v-if="this.$route.params.event" type="submit" @click="editEvent" :value="this.title" class="button secondary">
             <input v-else type="submit" @click="addNewEvent" :value="this.title" class="button secondary">
         </div>
@@ -167,7 +171,9 @@ import { mapActions, mapGetters } from 'vuex'
                     venue_id: this.venue_id,
                     is_live: 0
                 },
-                title: '',   
+                title: '', 
+                showNotification: false,
+                successMessage: '' 
             }
         },
         validations: {
@@ -218,16 +224,24 @@ import { mapActions, mapGetters } from 'vuex'
             ...mapActions({
                 addEvent: 'events/addEvent'
             }),
-            
             addNewEvent() { 
                 this.event.venue_id = this.venue_id
                 this.addEvent(this.event)
-                this.$router.push('/admin/events')
+                this.showNotification = true
+                this.successMessage = 'You have added a new event!'
+                setTimeout(() => {  
+                    this.$router.push('/admin/events')
+                }, 3000);
+                
             },
             async editEvent() {
                 await this.$store.dispatch('events/editEvent', this.event);
                 this.$router.push('/admin/events')
-            }   
+            },
+            closeNotification() {
+                this.showNotification = false
+                console.log('close')
+            }  
         },
         mounted() {
             console.log('defaultEvent: ',this.defaultEvent)
@@ -259,40 +273,43 @@ import { mapActions, mapGetters } from 'vuex'
 .readonly {
     color: $lightgrey;
 }
-    form {
-        display: flex;
-        width: 100%;
-        flex-direction: column;
-    }
-    input[type="text"], input[type="number"] {
-        border: 1px solid $secondary;
-        padding:10px;
-        flex: 10;
-        outline: 0;
-    }
-    input[type="submit"] {
-        flex: 2;
-        cursor: pointer;
-        background-color: $secondary;
-        color: #fff;
-    }
-    input[type="text"], input[type="number"] {
-        width: 100%;
-    }
-    .is-valid {
-        border: 1px solid #20aa27!important;
-    }
-    .v-btn--active {
-        color: #ff9966!important;
-    }
+form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+input[type="text"], input[type="number"] {
+    border: 1px solid $secondary;
+    padding:10px;
+    flex: 10;
+    outline: 0;
+}
+input[type="submit"] {
+    flex: 2;
+    cursor: pointer;
+    background-color: $secondary;
+    color: #fff;
+}
+input[type="text"], input[type="number"] {
+    width: 100%;
+}
+.is-valid {
+    border: 1px solid #20aa27!important;
+}
+.v-btn--active {
+    color: #ff9966!important;
+}
 
-    .v-time-picker-clock__hand {
-        background-color: $primary!important;
-    }
-    .accent {
-        background-color: $primary!important;
-    }
-    .theme--light.v-card {
-        background-color: $primary!important;
-    }
+.v-time-picker-clock__hand {
+    background-color: $primary!important;
+}
+.accent {
+    background-color: $primary!important;
+}
+.theme--light.v-card {
+    background-color: $primary!important;
+}
+.add {
+    margin-bottom: 40px;
+}
 </style>

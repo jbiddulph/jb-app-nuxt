@@ -110,6 +110,9 @@ h2 {
     }
 }
 @media only screen and (max-width: 600px) {
+    .venue-list {
+        flex-direction: column;
+    }
     .venue {
         width: 100% !important;;    
     }

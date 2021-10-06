@@ -1,5 +1,5 @@
 <template>
-  <div class="bd-example is-paddingless">
+  <div class="nav-bar-holder is-paddingless">
     <nav :class="isAuthenticated ? 'navbar is-warning is-fixed-top' : 'navbar is-light is-fixed-top'">
       <div class="navbar-brand">
         <nuxt-link class="navbar-item" to="/">
@@ -123,5 +123,8 @@ export default {
 .main-menu {
   display: flex;
   flex-direction: row;
+}
+.nav-bar-holder {
+  height: 36px;
 }
 </style>
