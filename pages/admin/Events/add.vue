@@ -21,7 +21,7 @@
         },
         methods: {
             selectVenue(venue_id) {
-                console.log('VENUE ID: ',venue_id)
+                console.log('VENUE ID xx: ',venue_id)
             },
         },
         mounted() {}

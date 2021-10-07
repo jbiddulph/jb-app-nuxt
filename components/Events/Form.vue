@@ -1,5 +1,6 @@
 <template>
-    <div v-if="venue_id && venuename != ''" class="container">
+<div class="container">
+    <div v-if="venue_id && venuename != ''">
         <h2 class="is-size-2">{{ this.title }}</h2>
         <h3 class="is-size-3">VENUE: {{venuename}}</h3>
         <nuxt-link v-if="this.$route.params.event" class="button is-warning is-small" :to="`/admin/events`">
@@ -151,6 +152,7 @@
             <input v-else type="submit" @click="addNewEvent" :value="this.title" class="button secondary">
         </div>
     </div>
+</div>
 </template>
 <script>
 import { required, minLength, maxLength, between} from 'vuelidate/lib/validators'

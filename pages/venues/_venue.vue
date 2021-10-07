@@ -20,19 +20,35 @@
             <span>{{venue.data.latitude}}</span>
             <span>{{venue.data.longitude}}</span>
             <h2 v-if="venue.data.events">Events</h2>
-            <div v-for="event in venue.data.events" :key="event.id">
-                <p>Event: {{event.eventName}}</p>
-                <div v-if="event.eventPhoto" class="bg-image" :style="`background-image: url(http://jwtapi.test/${event.eventPhoto})`">
+            <div class="events">
+                <div v-for="event in venue.data.events" :key="event.id" class="event">
+                    <div class="event-holder">
+                        <div class="event-pic">
+                            <div v-if="event.eventPhoto" class="bg-image" :style="`background:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url(http://jwtapi.test/${event.eventPhoto});`">
+                                <div class="event-title">
+                                    <span class="tag is-large">{{event.eventName}}</span>
+                                </div>
+                                <div class="cal-box mt-4">
+                                    <div class="cal-month">{{$moment(event.eventDate).format('MMM')}}</div>
+                                    <div class="cal-day is-size-3">{{$moment(event.eventDate).format('DD')}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="event-details is-light">
+                            <div class="details my-4">{{event.eventDetails}}</div>
+                            <!-- <p><span class="tag is-large">{{$moment(event.eventDate).format('dddd, MMMM Do YYYY')}}</span></p> -->
+                            <div class="times">From: <span>{{event.eventTimeStart}}</span> to <span>{{event.eventTimeEnd}}</span></div>
+                            <div class="type-cost mt-4">
+                                <span class="tag is-warning is-uppercase is-size-7">
+                                    <v-icon>mdi-account-music</v-icon>
+                                    {{event.eventType}}
+                                </span>
+                                <span class="tag is-warning is-uppercase is-size-5">&pound;{{event.eventCost}}</span>
+                            </div>
+                        </div>
+                        
+                    </div>
                 </div>
-                <div class="notification is-warning is-light">
-                <button class="delete"></button>
-                {{event.eventDetails}}
-                </div>
-                <p><span class="tag is-primary is-large">{{$moment(event.eventDate).format('dddd, MMMM Do YYYY')}}</span></p>
-                <p>From: <span class="tag is-primary">{{event.eventTimeStart}}</span> to <span class="tag is-primary">{{event.eventTimeEnd}}</span></p>
-                <span class="tag is-warning is-uppercase">{{event.eventType}}</span>
-                <p>&pound;{{event.eventCost}}</p>
-                <hr />
             </div>
             <br />
             <br />
@@ -63,6 +79,82 @@ import {mapState} from 'vuex';
 </script>
 
 <style lang="scss" scoped>
+@media only screen and (min-width: 600px) {
+    .events {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .event {
+        
+        width:49%;
+        flex-direction: row!important;
+    }
+}
+.event {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.event-holder {
+    flex-direction: column;
+    
+}
+.type-cost {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.event-details {
+    background: linear-gradient($primary-80, $primary);
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: $white;
+    margin-bottom: 20px;
+    .times {
+        color: $white;
+        span {
+            font-weight: bold;
+        }
+    }
+}
+.event-pic {
+    position:relative;
+    .bg-image {
+        background-size: cover!important;
+    }
+}
+.event-title {
+    position:absolute;
+    bottom: -10px;
+    left:-5px;
+}
+.cal-box {
+    border-radius: 5px;
+    background: $white;
+    width:50px;
+    text-align: center;
+    position: absolute;
+    right:10px;
+    top:0px;
+    z-index: 1;
+    .cal-month {
+        text-transform: uppercase;
+        background-color: $darkred;
+        color: $white;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .cal-day {
+        // font-weight: bold;
+        border-bottom: 2px solid $lightgrey;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+}
 .start {
     margin-top:60px;
 }

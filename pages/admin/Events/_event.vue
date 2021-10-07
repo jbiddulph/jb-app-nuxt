@@ -1,8 +1,8 @@
 <template>
     <div>
         <LayoutNavbar/>
-        <!-- <VenuesSearch :venueSearch="venueSearch" /> -->
-        <EventsForm />
+        <VenuesSearch :venueSearch="venueSearch" />
+        <EventsForm :event="event" />
         <LayoutFooter/>
     </div>
 </template>
