@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/venues/add", {data:[{}],fetch:{},mutations:[]});
