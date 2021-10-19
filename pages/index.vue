@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <!-- <LayoutNavbar 
         v-if="isAuthenticated" 
         :username="username" 
@@ -7,7 +7,8 @@
     /> -->
     <LayoutNavbar/>
     <!-- <Home /> -->
-    <h2>Here I am! Here I am!</h2>
+    <VenuesSearch :venueSearch="venueSearch" />
+        <EventsForm  />
     <LayoutFooter/>
   </div>
 </template>
