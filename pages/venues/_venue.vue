@@ -23,7 +23,6 @@
             <div class="events">
                 <div v-for="event in venue.data.data.events" :key="event.id" class="event">
                     <div class="event-holder">
-                        http://jwtapi.jbiddulph.com/{{event.eventPhoto}}
                         <div class="event-pic">
                             <div v-if="event.eventPhoto" class="bg-image" :style="`background:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url('/'${event.eventPhoto});`">
                                 <div class="event-title">
