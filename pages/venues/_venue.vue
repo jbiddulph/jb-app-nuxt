@@ -8,23 +8,24 @@
                 </svg>
                 Back to Venues
             </nuxt-link>
-            <h1>{{venue.data.venuename}}</h1>
-            <h2>{{venue.data.address}}</h2>
+            <h1>{{venue.data.data.venuename}}</h1>
+            <h2>{{venue.data.data.address}}</h2>
         </div>
-            <div v-if="venue.data.photo" class="bg-image" :style="`background-image: url(${venue.data.photo})`">
-            <!-- <div v-if="venue.data.photo" class="bg-image" :style="`background-image: url(http://jwtapi.test/${venue.data.photo})`"> -->
+            <div v-if="venue.data.data.photo" class="bg-image" :style="`background-image: url('https://jwtapi.jbiddulph.com/'${venue.data.data.photo})`">
+            <!-- <div v-if="venue.data.data.photo" class="bg-image" :style="`background-image: url(http://jwtapi.test/${venue.data.data.photo})`"> -->
             </div>
         <div class="container start">   
-            <div>{{venue.data.postcode}}</div>
-            <div>{{venue.data.telephone}}</div>
-            <span>{{venue.data.latitude}}</span>
-            <span>{{venue.data.longitude}}</span>
-            <h2 v-if="venue.data.events">Events</h2>
+            <div>{{venue.data.data.postcode}}</div>
+            <div>{{venue.data.data.telephone}}</div>
+            <span>{{venue.data.data.latitude}}</span>
+            <span>{{venue.data.data.longitude}}</span>
+            <h2 v-if="venue.data.data.events">Events</h2>
             <div class="events">
-                <div v-for="event in venue.data.events" :key="event.id" class="event">
+                <div v-for="event in venue.data.data.events" :key="event.id" class="event">
                     <div class="event-holder">
+                        http://jwtapi.jbiddulph.com/{{event.eventPhoto}}
                         <div class="event-pic">
-                            <div v-if="event.eventPhoto" class="bg-image" :style="`background:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url(http://jwtapi.test/${event.eventPhoto});`">
+                            <div v-if="event.eventPhoto" class="bg-image" :style="`background:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url('/'${event.eventPhoto});`">
                                 <div class="event-title">
                                     <span class="tag is-large">{{event.eventName}}</span>
                                 </div>
@@ -55,7 +56,7 @@
             <br />
             <br />
             <!-- <VenuesForm /> -->
-            <!-- {{venue.data.data}} -->
+            <!-- {{venue.data.data.data}} -->
         </div>
         <LayoutFooter/>
     </div>

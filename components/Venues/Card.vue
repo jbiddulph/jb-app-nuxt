@@ -1,6 +1,7 @@
 <template>    
     <div>
         <div v-if="!isAuthenticated" class="venue">
+            {{$config.baseURL}}
             <!-- <div v-if="venue.photo" class="bg-image" :style="`background-image: url(http://jwtapi.test/${venue.photo})`"> -->
             <div v-if="venue.photo" class="bg-image" :style="`background-image: url(${venue.photo})`">
             </div>

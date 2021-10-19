@@ -305,6 +305,9 @@ input[type="text"], input[type="number"] {
 .v-time-picker-clock__hand {
     background-color: $primary!important;
 }
+.v-time-picker-clock__hand:before {
+    background-color: $primary!important;
+}
 .accent {
     background-color: $primary!important;
 }

@@ -1,6 +1,6 @@
 <template>    
     <div>
-        <div v-if="isAuthenticated" class="venue">
+        <div class="venue">
             <div class="text">
                 <h2 class="is-size-3">{{ venue.venuename }}</h2>
                 <p>{{ venue.address }}</p>

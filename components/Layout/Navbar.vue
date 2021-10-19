@@ -3,7 +3,7 @@
     <nav :class="isAuthenticated ? 'navbar is-warning is-fixed-top' : 'navbar is-light is-fixed-top'">
       <div class="navbar-brand">
         <nuxt-link class="navbar-item" to="/">
-          <img src="~/assets/images/logo.png" alt="Logo" width="112" height="28">
+          <img src="~/assets/images/logo.png" alt="Logo">
         </nuxt-link>
         <div class="navbar-burger" data-target="navMenu" @click="showNav = !showNav" :class="{ 'is-active': showNav }">
           <span></span>
@@ -119,7 +119,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.navbar-brand {
+  a {
+    padding: 0!important;
+    img {
+      max-height: 3rem!important;
+    }
+  }
+}
 .main-menu {
   display: flex;
   flex-direction: row;

@@ -62,12 +62,17 @@ export default {
     scss: [
         'assets/scss/styles.scss',
         'assets/scss/variables.scss',
+        'https://fonts.googleapis.com/css2?family=Raleway:wght@300;600',
+        'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600',
     ]
   },
-
+  publicRuntimeConfig: {
+    baseURL: process.env.BASE_URL || 'http://jwtapi.jbiddulph.com'
+  },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'http://jwtapi.test/api'
+    // baseURL: 'http://jwtapi.test/api'
+    baseURL: 'https://jwtapi.jbiddulph.com/api'
   },
   auth: {
     strategies: {

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-bottom-navigation v-model="value">
+        <!-- <v-bottom-navigation v-model="value">
             <v-btn value="recent" to="/events">
             <span>Events</span>
 
@@ -18,7 +18,9 @@
 
             <v-icon>mdi-map-marker</v-icon>
             </v-btn>
-        </v-bottom-navigation>
+        </v-bottom-navigation> -->
+
+        
         <!-- <footer class="footer">
             <div class="content has-text-centered">
                 <p>
