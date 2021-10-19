@@ -32,7 +32,9 @@ export default {
     src: '~/Plugins/vuelidate',
     mode: 'all'
   }],
-
+  generate: {
+    dir: 'pubmic'
+  },
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
