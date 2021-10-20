@@ -37,6 +37,7 @@ const actions = {
     },
     // EDIT
     async editVenue ({commit}, data) {
+        console.log('Venue Data: ', data)
         try {
             const response = this.$axios.put(`venues/${data.id}`, data, {
                 headers: {

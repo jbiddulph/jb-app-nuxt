@@ -72,7 +72,7 @@ import { mapGetters } from 'vuex'
     color: $offwhite;
     flex-wrap: wrap;
     align-content: center;
-    border-bottom: 2px dashed $primary-80;
+    border-bottom: 2px dashed $offwhite;
     a {
         display: flex;
         flex-direction: column;
