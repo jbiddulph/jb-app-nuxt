@@ -8,7 +8,7 @@
             Back to Users
         </nuxt-link>
         <div v-if="user.photo" class="image">
-            <img :src="`http://jwtapi.test/${user.photo}`" height="100" />
+            <img :src="`https://jwtapi.jbiddulph.com/storage/${user.photo}`" height="100" />
         </div>
         <div class="add">
             <UploadImage :folder="'users'" :image.sync="user.photo" />

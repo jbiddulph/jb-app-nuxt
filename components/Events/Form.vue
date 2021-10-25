@@ -10,7 +10,7 @@
             Back to Events
         </nuxt-link>
         <div v-if="event.eventPhoto" class="image">
-            <img :src="`http://jwtapi.test/${event.eventPhoto}`" height="100" />
+            <img :src="`https://jwtapi.jbiddulph.com/storage/${event.eventPhoto}`" height="100" />
         </div>
         <div class="add">
             <UploadImage :folder="'events'" :image.sync="event.eventPhoto" />
