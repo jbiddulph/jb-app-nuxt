@@ -39,6 +39,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@plugins/vuetify',
+    '@plugins/vue-browser-geolocation',
       {
     src: '~/Plugins/vuex-persist',
     src: '~/Plugins/vuelidate',
@@ -68,6 +69,10 @@ export default {
     '@nuxtjs/moment',
     ['nuxt-vuex-localstorage', {
       mode: 'manual'
+    }],
+    ['nuxt-gmaps', {
+      key: 'AIzaSyAmjrq1SnKU_4cTlbOsSALZGsradVP3Rfg',
+      //you can use libraries: ['places']
     }]
   ],
 

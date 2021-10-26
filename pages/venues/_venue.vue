@@ -11,7 +11,7 @@
             <h1>{{venue.data.data.venuename}}</h1>
             <h2>{{venue.data.data.address}}</h2>
         </div>
-        
+        <VenuesMap />
         <img :src="`${$config.baseURL}/storage/${venue.data.data.photo}`" height="100" />
             <div v-if="venue.data.data.photo" class="bg-image" :style="`background-image: url('${$config.baseURL}/storage/'${venue.data.data.photo})`">
             </div>
