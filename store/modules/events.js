@@ -17,11 +17,7 @@ const actions = {
     // ADD
     async addEvent ({commit}, data) {
         try {
-            const response = this.$axios.post('events', data, {
-                headers: {
-                    Authorization: `${window.localStorage.getItem('auth._token.local')}`
-                },
-            })  // JSON responses are automatically parsed.
+            const response = this.$axios.post('events', data)  // JSON responses are automatically parsed.
                 commit('ADD_EVENT', response)
             
         } catch (error) {
