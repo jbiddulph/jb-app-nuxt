@@ -21,6 +21,14 @@ export default {
         rel: 'stylesheet',
         href: 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css'
       },
+      { 
+        rel: 'stylesheet', 
+        href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500' 
+      },
+      { 
+        rel: 'stylesheet', 
+        href: 'https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400' 
+      }
     ]
   },
 
@@ -45,6 +53,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
+    '@nuxtjs/style-resources',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/vuetify',
     '@nuxtjs/fontawesome',
@@ -56,7 +65,6 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth',
-    '@nuxtjs/style-resources',
     '@nuxtjs/moment',
     ['nuxt-vuex-localstorage', {
       mode: 'manual'
@@ -66,10 +74,8 @@ export default {
   // Style Resources
   styleResources: {
     scss: [
-        'assets/scss/styles.scss',
-        'assets/scss/variables.scss',
-        'https://fonts.googleapis.com/css2?family=Raleway:wght@300;600',
-        'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600',
+        '../assets/scss/styles.scss',
+      '../assets/scss/variables.scss'
     ]
   },
   publicRuntimeConfig: {

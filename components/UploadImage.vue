@@ -1,15 +1,16 @@
 <template>
-    <div>
-        <h2>Upload Image</h2>
+    <div class="text-center mt-4 mb-4">
+        <h2 class="mb-2">Upload Image</h2>
         <form @submit.prevent="upload()">
             <input @change="handleOnChange" type="file">
-            <button class="button secondary">Upload</button>
+            <button class="button secondary mt-2">Upload</button>
         </form>
     </div>
 </template>
 
 <script>
     export default {
+        name: 'UploadImage',
         props: {
             folder: {
             type: String,

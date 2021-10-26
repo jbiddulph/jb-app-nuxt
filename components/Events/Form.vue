@@ -9,8 +9,8 @@
             </svg>
             Back to Events
         </nuxt-link>
-        <div v-if="event.eventPhoto" class="image">
-            <img :src="`https://jwtapi.jbiddulph.com/storage/${event.eventPhoto}`" height="100" />
+        <div v-if="event.eventPhoto" class="image text-center">
+            <img :src="`${$config.baseURL}/storage/${event.eventPhoto}`" height="100" />
         </div>
         <div class="add">
             <UploadImage :folder="'events'" :image.sync="event.eventPhoto" />
@@ -269,7 +269,7 @@ import { mapActions, mapGetters } from 'vuex'
 
 <style scoped lang="scss">
 .image img {
-    height: 100px;
+    height: auto;
     width: auto;
 }
 .readonly {

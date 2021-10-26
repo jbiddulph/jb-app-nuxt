@@ -1,9 +1,7 @@
 <template>    
     <div>
         <div v-if="!isAuthenticated" class="venue">
-            {{$config.baseURL}}
-            
-            <div v-if="venue.photo" class="bg-image" :style="`background-image: url(https://jwtapi.jbiddulph.com/storage/${venue.photo})`">
+            <div v-if="venue.photo" class="bg-image" :style="`background-image: url(${$config.baseURL}/storage/${venue.photo})`">
             </div>
             <div class="text">
                 <h2 class="is-size-3">{{ venue.venuename }}</h2>
@@ -14,9 +12,9 @@
             </nuxt-link>
         </div>
         <div v-else class="venue">
-            <!-- <img :src="`https://jwtapi.jbiddulph.com/storage/${venue.photo}`" height="100" /> -->
-            <!-- <div v-if="venue.photo" class="bg-image" :style="`background-image: url(http://jwtapi.test/${venue.photo})`"> -->
-            <div v-if="venue.photo" class="bg-image" :style="`background-image: url(https://jwtapi.jbiddulph.com/storage/${venue.photo})`">
+            <!-- <img :src="`${$config.baseURL}/storage/${venue.photo}`" height="100" /> -->
+            <!-- <div v-if="venue.photo" class="bg-image" :style="`background-image: url(${$config.baseURL}/storage/${venue.photo})`"> -->
+            <div v-if="venue.photo" class="bg-image" :style="`background-image: url(${$config.baseURL}/storage/${venue.photo})`">
             </div>
             <div class="text">
                 <h2 class="is-size-3">{{ venue.venuename }}</h2>

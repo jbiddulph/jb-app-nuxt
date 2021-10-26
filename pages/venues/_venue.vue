@@ -12,8 +12,8 @@
             <h2>{{venue.data.data.address}}</h2>
         </div>
         
-        <img :src="`https://jwtapi.jbiddulph.com/storage/${venue.data.data.photo}`" height="100" />
-            <div v-if="venue.data.data.photo" class="bg-image" :style="`background-image: url('https://jwtapi.jbiddulph.com/storage/'${venue.data.data.photo})`">
+        <img :src="`${$config.baseURL}/storage/${venue.data.data.photo}`" height="100" />
+            <div v-if="venue.data.data.photo" class="bg-image" :style="`background-image: url('${$config.baseURL}/storage/'${venue.data.data.photo})`">
             </div>
         <div class="container start">   
             <div>{{venue.data.data.postcode}}</div>
@@ -25,7 +25,7 @@
                 <div v-for="event in venue.data.data.events" :key="event.id" class="event">
                     <div class="event-holder">
                         <div class="event-pic">
-                            <div v-if="event.eventPhoto" class="bg-image" :style="`background:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url(https://jwtapi.jbiddulph.com/storage/${event.eventPhoto});`">
+                            <div v-if="event.eventPhoto" class="bg-image" :style="`background:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url(${$config.baseURL}/storage/${event.eventPhoto});`">
                                 <div class="event-title">
                                     <span class="tag is-large">{{event.eventName}}</span>
                                 </div>

@@ -8,7 +8,7 @@
             Back to Venues
         </nuxt-link>
         <div v-if="venue.photo" class="image">
-            <img :src="`https://jwtapi.jbiddulph.com/storage/${venue.photo}`" height="100" />
+            <img :src="`${$config.baseURL}/storage/${venue.photo}`" height="100" />
         </div>
         <div class="add">
             <UploadImage :folder="'venues'" :image.sync="venue.photo" />
