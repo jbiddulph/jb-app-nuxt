@@ -129,10 +129,16 @@ export default {
 }
 .main-menu {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 
 }
 .nav-bar-holder {
   height: 36px;
+}
+// Screen  600p
+@media only screen and (max-width: 600px) {
+    .main-menu {
+    flex-direction: column;
+  }
 }
 </style>
