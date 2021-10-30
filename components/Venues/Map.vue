@@ -1,26 +1,24 @@
 <template>
     <div>
-        <h1>Your Coordinates</h1>
-        <p>Lat: {{currentLocation.lat}} Lng:{{currentLocation.lng}}</p>
         <GMap
         ref="gMap"
         language="en"
         :cluster="{options: {styles: clusterStyle}}"
-        :center="currentLocation"
+        :center="{lat: parseFloat(venue.data.data.latitude), lng: parseFloat(venue.data.data.longitude)}"
         :options="{fullscreenControl: false, styles: mapStyle}"
-        :zoom="12"
+        :zoom="16"
         >
         <GMapMarker
             v-for="location in locations"
             :key="location.id"
-            :position="{lat: location.lat, lng: location.lng}"
+            :position="{lat: parseFloat(venue.data.data.latitude), lng: parseFloat(venue.data.data.longitude)}"
             :options="{icon: location === currentLocation ? pins.selected : pins.notSelected}"
             @click="currentLocation = location"
         >
             <GMapInfoWindow :options="{maxWidth: 200}">
             <code>
-                lat: {{ currentLocation.lat }},
-                lng: {{ currentLocation.lng }}
+                lat: {{ venue.data.data.latitude }},
+                lng: {{ venue.data.data.longitude }}
             </code>
             </GMapInfoWindow>
         </GMapMarker>
@@ -31,6 +29,9 @@
 
 <script>
     export default {
+        props: {
+            venue: Object,
+        },
         data() {
             return {
                 currentLocation: {
@@ -46,12 +47,8 @@
                     lng: 15.629058
                 },
                 {
-                    lat: 45.815,
-                    lng: "15.9819"
-                },
-                {
-                    lat: "45.12",
-                    lng: "16.21"
+                    lat: 44.933076,
+                    lng: 15.629058
                 }
                 ],
                 pins: {
@@ -61,19 +58,21 @@
                 mapStyle: ['road'],
                 clusterStyle: [
                 {
-                    url: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m1.png",
-                    width: 56,
-                    height: 56,
-                    textColor: "#fff"
+                    url: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m4.png",
+                    width: 76,
+                    height: 76,
+                    textColor: "#ff04ec"
                 }
                 ]
             }
         },
-        created() {
+        async created() {
             // get users coordinates from Browser request
-            this.$getLocation({})
+            await this.$getLocation({})
             .then(coordinates => {
-                this.currentLocation = coordinates
+                console.log('coords: ', coordinates)
+                this.currentLocation.lat = coordinates.lat
+                this.currentLocation.lng = coordinates.lng
             })
             .catch(error => alert(error))
         }

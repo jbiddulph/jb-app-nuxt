@@ -219,8 +219,10 @@ import { mapActions, mapGetters } from 'vuex'
                 this.$router.push('/admin/venues')
             },
             async editVenue() {
+                console.log('this.venue: ',this.venue)
                 await this.$store.dispatch('venues/editVenue', this.venue);
-                this.$router.push('/admin/venues')
+
+                // this.$router.push('/admin/venues')
             }
         },
         computed: {

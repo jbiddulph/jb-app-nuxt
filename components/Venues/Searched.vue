@@ -18,14 +18,6 @@ import { mapGetters } from 'vuex'
             required: false,
             },
         },
-        methods: {
-            deleteVenue(venue) {
-                let response = confirm(`Are you sure you want to delete, ${venue.venuename}`)
-                if(response) {
-                    this.$store.dispatch('venues/deleteVenue', venue)
-                }
-            }
-        },
         computed: {
             ...mapGetters({
                 isAuthenticated : 'auth/isAuthenticated',

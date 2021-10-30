@@ -18,6 +18,7 @@
             <nuxt-link class="navbar-item is-size-4 has-text-centered" to="/">Home</nuxt-link>
             <nuxt-link class="navbar-item is-size-4 has-text-centered" to="/events">Events</nuxt-link>
             <nuxt-link class="navbar-item is-size-4 has-text-centered" to="/venues">Venues</nuxt-link>
+            <nuxt-link class="navbar-item is-size-4 has-text-centered" to="/towns">Towns</nuxt-link>
           </div>
 
           <div v-if="isAuthenticated" class="navbar-item has-dropdown is-hoverable">

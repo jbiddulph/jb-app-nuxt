@@ -7,7 +7,8 @@
     /> -->
     <LayoutNavbar/>
     <!-- <Home /> -->
-    <VenuesSearch :venueSearch="venueSearch" />
+    <VenuesSearch />
+    <VenuesTowns />
         <EventsForm  />
     <LayoutFooter/>
   </div>
