@@ -29,7 +29,7 @@
                 <div v-for="event in venue.data.data.events" :key="event.id" class="event">
                     <div class="event-holder">
                         <div class="event-pic">
-                            <div v-if="event.eventPhoto" class="bg-image" :style="`background:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url(${$config.baseURL}/storage/${event.eventPhoto});`">
+                            <div v-if="event.eventPhoto" class="bg-image" :style="`background:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url(${$config.baseURL}/storage/${event.eventPhoto}); background-position: center center;`">
                                 <div class="event-title">
                                     <span class="tag is-large">{{event.eventName}}</span>
                                 </div>

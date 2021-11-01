@@ -6,10 +6,15 @@
             <div class="text">
                 <h2 class="is-size-3">{{ venue.venuename }}</h2>
                 <p>{{ venue.address }}</p>
+                <p>{{ venue.address2 }}</p>
+                <p>{{ venue.town }}</p>
+                <p>{{ venue.county }}</p>
             </div>
-            <nuxt-link class="button is-warning" :to="`/venues/${venue.id}`">
-                View
-            </nuxt-link>
+            <div class="mx-3">
+                <nuxt-link class="button is-warning" :to="`/venues/${venue.id}`">
+                    View
+                </nuxt-link>
+            </div>
         </div>
         <div v-else class="venue">
             <!-- <img :src="`${$config.baseURL}/storage/${venue.photo}`" height="100" /> -->
@@ -96,9 +101,10 @@ import { mapGetters } from 'vuex'
         line-height: 34px;
         margin-bottom: 10px;
     }
+    padding-bottom: 15px;
     width: 100%!important;
-    height: 500px;
-    color: #990066;
+    height: auto;
+    color: #333333;
     flex-wrap: wrap;
     border: 1px solid #e2e2e2;
     border-bottom-right-radius: 10px;

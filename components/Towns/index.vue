@@ -4,9 +4,11 @@
             <h1 class="is-size-2">Towns</h1>
             <button v-if="isAuthenticated" class="button is-primary is-large modal-button" data-target="modal" aria-haspopup="true" @click="showModal">+ Add Venue</button>
         </div>
-        <div class="venue-list">
-            <div v-for="town in towns" v-bind:key="town.id">
-                {{ town.town }}
+        <div class="towns-list">
+            <div v-for="town in towns" v-bind:key="town.id" class="town">
+                <nuxt-link class="button is-warning is-size-4" :to="`/towns/${town.town}`">
+                    {{ town.town }}
+                </nuxt-link>
             </div>
         </div>
     </div>
@@ -58,22 +60,21 @@ h2 {
     justify-content: space-between;
     align-items: center;
 }
-.venue-list {
+.towns-list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
     margin:  30px 0px 60px 0px;
     p {
         font-weight: 300;
     }
 }
 @media only screen and (max-width: 600px) {
-    .venue-list {
-        flex-direction: column;
+    .towns-list {
+        flex-direction: row;
     }
-    .venue {
-        width: 100% !important;;    
+    .town {
+        margin: 0 15px 15px 0;
     }
 }
 
