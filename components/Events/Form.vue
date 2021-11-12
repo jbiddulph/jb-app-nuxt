@@ -2,7 +2,7 @@
 <div class="container">
     <div v-if="venue_id && venuename != ''">
         <h2 class="is-size-2">{{ this.title }}</h2>
-        <h3 class="is-size-3">VENUE: {{venuename}}</h3>
+        <h3 class="is-size-3">VENUE: {{ venuename }}</h3>
         <nuxt-link v-if="this.$route.params.event" class="button is-warning is-small" :to="`/admin/events`">
             <svg style="width:24px;height:24px;margin-right:15px;" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M22,3H7C6.31,3 5.77,3.35 5.41,3.88L0,12L5.41,20.11C5.77,20.64 6.31,21 7,21H22A2,2 0 0,0 24,19V5A2,2 0 0,0 22,3M19,15.59L17.59,17L14,13.41L10.41,17L9,15.59L12.59,12L9,8.41L10.41,7L14,10.59L17.59,7L19,8.41L15.41,12" />
@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </div>
-            <div class="field">
+            <!-- <div class="field">
                 <label class="label">Event Slug</label>
                 <div class="control">
                     <input type="text" v-model="event.slug" placeholder="Event Slug" :class="{
@@ -34,7 +34,7 @@
                         <span v-if="!$v.event.slug.required">Event slug is required</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="field">
                 <label class="label">Event Details</label>
                 <div class="control">
@@ -57,6 +57,16 @@
                 </div>
             </div>
             <div class="field">
+                <label class="label">Event Cost</label>
+                <div class="control">
+                    <input type="number" pattern="[0-9]*" inputmode="numeric" v-model="event.eventCost" placeholder="Event Cost" :class="{
+                        'is-invalid':$v.event.eventCost.$error, 'is-valid':!$v.event.eventCost.$invalid}">
+                    <div v-if="event.eventCost" class="invalid-feedback">
+                        <span v-if="!$v.event.eventCost.required">Event cost is required</span>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
                 <label class="label">Event Date</label>
                 <div class="control">
                     <v-date-picker :first-day-of-week="1" v-model="event.eventDate"></v-date-picker>
@@ -73,55 +83,55 @@
             align="center"
             >
                 <v-col style="width: 350px; flex: 0 1 auto;">
-                    <h2>Start:</h2>
+                    <label class="label">Start</label>
                     <v-time-picker
                     v-model="event.eventTimeStart"
                     ></v-time-picker>
                 </v-col>
                 <v-col style="width: 350px; flex: 0 1 auto;">
-                    <h2>End:</h2>
+                    <label class="label">End</label>
                     <v-time-picker
                     v-model="event.eventTimeEnd"
                     ></v-time-picker>
                 </v-col>
             </v-row>                
-            <div class="field">
+            <div class="field" v-if="event.eventDate">
+                <label class="label">Event Date</label>
+                <div class="control">
+                    {{ event.eventDate }}
+                    <div class="invalid-feedback">
+                        <span v-if="!$v.event.eventDate.required">Event date is required</span>
+                    </div>
+                </div>
+            </div>
+            <div class="field" v-if="event.eventTimeStart">
                 <label class="label">Event Time Start</label>
                 <div class="control">
-                    <input type="text" v-model="event.eventTimeStart" placeholder="Event Time Start" :class="{
-                        'is-invalid':$v.event.eventTimeStart.$error, 'is-valid':!$v.event.eventTimeStart.$invalid}">
-                    <div v-if="event.eventTimeStart" class="invalid-feedback">
+                    {{ event.eventTimeStart }}
+                    <div class="invalid-feedback">
                         <span v-if="!$v.event.eventTimeStart.required">Event time start is required</span>
                     </div>
                 </div>
             </div>
-            <div class="field">
+            <div class="field" v-if="event.eventTimeEnd">
                 <label class="label">Event Time End</label>
                 <div class="control">
-                    <input type="text" v-model="event.eventTimeEnd" placeholder="Event Time End" :class="{
-                        'is-invalid':$v.event.eventTimeEnd.$error, 'is-valid':!$v.event.eventTimeEnd.$invalid}">
-                    <div v-if="event.eventTimeEnd" class="invalid-feedback">
+                    {{ event.eventTimeEnd }}
+                    <div class="invalid-feedback">
                         <span v-if="!$v.event.eventTimeEnd.required">Event date is required</span>
                     </div>
                 </div>
             </div>
-            <div class="field">
+            <div class="field" v-if="event.eventPhoto">
                 <label class="label">Event Photo</label>
                 <div class="control">
-                    <input type="text" readonly v-model="event.eventPhoto" placeholder="Event Photo" :class="{
+                    <div class="image text-center">
+                        <img :src="`${$config.baseURL}/storage/${event.eventPhoto}`" height="100" />
+                    </div>
+                    <input type="hidden" readonly v-model="event.eventPhoto" placeholder="Event Photo" :class="{
                         'is-invalid':$v.event.eventPhoto.$error, 'is-valid readonly':!$v.event.eventPhoto.$invalid}">
                     <div v-if="event.eventPhoto" class="invalid-feedback">
                         <span v-if="!$v.event.eventPhoto.required">Event photo is required</span>
-                    </div>
-                </div>
-            </div>
-            <div class="field">
-                <label class="label">Event Cost</label>
-                <div class="control">
-                    <input type="text" v-model="event.eventCost" placeholder="Event Cost" :class="{
-                        'is-invalid':$v.event.eventCost.$error, 'is-valid':!$v.event.eventCost.$invalid}">
-                    <div v-if="event.eventCost" class="invalid-feedback">
-                        <span v-if="!$v.event.eventCost.required">Event cost is required</span>
                     </div>
                 </div>
             </div>
@@ -135,21 +145,28 @@
                     </div>
                 </div> -->
                 <div class="control">
-                    <input type="number" readonly v-model="venue_id" placeholder="Venue" class="is-valid readonly">
+                    {{ venuename }}
+                    <input type="hidden" readonly v-model="venue_id" placeholder="Venue" class="is-valid readonly">
                 </div>
             </div>
             <div class="field">
                 <label class="label">Live</label>
                 <div class="control">
-                    <input type="checkbox" v-model="event.is_live" placeholder="Live">
+                    <input type="checkbox" class="larger" v-model="event.is_live" placeholder="Live">
                 </div>
             </div>
             <div v-if="showNotification" class="notification is-success is-light">
             <button class="delete" @click="closeNotification()"></button>
                 {{successMessage}}
             </div>
-            <input v-if="this.$route.params.event" type="submit" @click="editEvent" :value="this.title" class="button secondary">
-            <input v-else type="submit" @click="addNewEvent" :value="this.title" class="button secondary">
+            <!-- Start time -->
+            <input type="hidden" v-model="event.eventTimeStart" placeholder="Event Time Start" :class="{
+                        'is-invalid':$v.event.eventTimeStart.$error, 'is-valid':!$v.event.eventTimeStart.$invalid}">
+            <!-- End time -->
+            <input type="hidden" v-model="event.eventTimeEnd" placeholder="Event Time End" :class="{
+                        'is-invalid':$v.event.eventTimeEnd.$error, 'is-valid':!$v.event.eventTimeEnd.$invalid}">
+            <input v-if="this.$route.params.event" type="submit" @click="editEvent" :value="this.title" class="button secondary is-fullwidth">
+            <input v-else type="submit" @click="addNewEvent" :value="this.title" class="button secondary is-fullwidth">
         </div>
     </div>
 </div>
@@ -268,6 +285,10 @@ import { mapActions, mapGetters } from 'vuex'
 </script>
 
 <style scoped lang="scss">
+input.larger {
+    width: 30px;
+    height: 30px;
+}
 .image img {
     height: auto;
     width: auto;

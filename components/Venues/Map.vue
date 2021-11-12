@@ -68,13 +68,12 @@
         },
         async created() {
             // get users coordinates from Browser request
-            await this.$getLocation({})
-            .then(coordinates => {
-                console.log('coords: ', coordinates)
-                this.currentLocation.lat = coordinates.lat
-                this.currentLocation.lng = coordinates.lng
-            })
-            .catch(error => alert(error))
+            // await this.$getLocation({})
+            // .then(coordinates => {
+            //     this.currentLocation.lat = coordinates.lat
+            //     this.currentLocation.lng = coordinates.lng
+            // })
+            // .catch(error => alert(error))
         }
     }
 </script>

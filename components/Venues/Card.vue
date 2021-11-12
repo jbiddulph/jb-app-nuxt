@@ -102,7 +102,7 @@ import { mapGetters } from 'vuex'
         margin-bottom: 10px;
     }
     padding-bottom: 15px;
-    width: 100%!important;
+    width: 300px!important;
     height: auto;
     color: #333333;
     flex-wrap: wrap;
